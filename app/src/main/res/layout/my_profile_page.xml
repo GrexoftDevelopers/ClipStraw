@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/red"
     android:padding="20dp">
 
-    <widgets.CircularImageView
+    <widgets.CircleImageView
         android:id="@+id/user_img_circle"
         style="@style/imageCircleNormal"
         android:layout_gravity="center"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#FFFFFF"
+        app:civ_border_overlay="true"
         android:layout_marginTop="90dp"/>
 
     <TextView

@@ -14,7 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.clipstraw.gx.clipstraw.request.RequestManager;
 
-import widgets.CircularImageView;
+import widgets.CircleImageView;
 
 /**
  * Created by Faizzy on 19-01-2016.
@@ -23,7 +23,7 @@ import widgets.CircularImageView;
 
 public class MyProfileFragment extends Fragment {
     private View fragmentView;
-    CircularImageView imgProfile;
+    private CircleImageView imgProfile;
     private ImageRequest imgRequest;
 
     @Nullable
@@ -32,10 +32,10 @@ public class MyProfileFragment extends Fragment {
 
         fragmentView = inflater.inflate(R.layout.my_profile_page, container, false);
 
-        imgProfile = (CircularImageView) fragmentView.findViewById(R.id.user_img_circle);
+        imgProfile = (CircleImageView) fragmentView.findViewById(R.id.user_img_circle);
 
         String url = "https://avatars2.githubusercontent.com/u/16339484?v=3&s=460";
-         imgRequest = new ImageRequest(url,
+        imgRequest = new ImageRequest(url,
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
@@ -45,7 +45,10 @@ public class MyProfileFragment extends Fragment {
                 }, 0, 0, ImageView.ScaleType.FIT_XY, Bitmap.Config.ARGB_8888, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               imgProfile.setBackgroundResource(R.drawable.circle);
+//                Bitmap bitmap= BitmapFactory.decodeResource(getActivity().getResources(),
+//                        R.mipmap.ic_user_large_grey);
+
+                imgProfile.setBackgroundResource(R.drawable.circle);
                 error.printStackTrace();
             }
         });
@@ -54,5 +57,5 @@ public class MyProfileFragment extends Fragment {
 
 
         return fragmentView;
-        }
-        }
+    }
+}
