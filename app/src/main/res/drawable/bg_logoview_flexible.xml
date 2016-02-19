@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <layer-list>
+        <item android:drawable="@mipmap/bg_logoview_shadowy" android:left="15dp"/>
+        <item android:gravity="center_vertical" android:width="20dp"><bitmap android:src="@mipmap/logoview_head"/></item>
+    </layer-list>
+</item>
+</selector>

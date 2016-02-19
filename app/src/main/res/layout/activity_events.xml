@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:IconEditText="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.clipstraw.gx.clipstraw.EventsAcivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grayColor"
+        android:elevation="4dp"
+        android:paddingRight="10dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/AppBarOverlay"
+        app:popupTheme="@style/PopupOverlay">
+
+
+        <widgets.IconEditText
+            android:id="@+id/et_find_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="@string/type_location"
+            android:lines="1"
+            android:padding="10dp"
+            android:scrollHorizontally="true"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/text_normal"
+            IconEditText:icon_mipmap="@mipmap/ic_location_small_grey"
+            IconEditText:icon_position="left" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white">
+
+
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="4dp">
+
+        <ViewStub
+            android:id="@+id/view_stub_footer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inflatedId="@+id/gray_footer"
+            android:layout="@layout/event_footer_gray" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:id="@+id/conversation_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/img_display_pic"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/circle"
+            android:scaleType="fitCenter" />
+        <ImageView
+            android:id="@+id/img_ring"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/image_ring"
+            android:layout_alignBottom="@+id/img_display_pic"
+            android:layout_alignRight="@+id/img_display_pic"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/conversation_image"
+        android:orientation="vertical"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp" >
+
+
+        <TextView
+            android:id="@+id/action_bar_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="0.6"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textSize="16sp"
+            android:text="@string/name_user"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/action_bar_status"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.4"
+            android:ellipsize="end"
+            android:text="@string/status"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+    </RelativeLayout>

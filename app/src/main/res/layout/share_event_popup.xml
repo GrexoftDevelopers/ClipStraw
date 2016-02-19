@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_popup"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:background="@color/red">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_event"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_head_normal"
+        android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/img_facebook"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/img_twitter"
+            android:background="@drawable/circle"
+            android:src="@mipmap/ic_facebook_share_small"/>
+
+        <ImageView
+            android:id="@+id/img_twitter"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/img_insatagram"
+            android:background="@drawable/circle"
+            android:src="@mipmap/ic_twitter_share_small"/>
+
+        <ImageView
+            android:id="@+id/img_insatagram"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/circle"
+            android:src="@mipmap/ic_insta_share_small"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_bnt_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@android:color/white"
+        android:padding="10dp">
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txt_send_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/txt_cancel"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentBottom="true"
+            android:text="@string/send_event"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal"/>
+
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

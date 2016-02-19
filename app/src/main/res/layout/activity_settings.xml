@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:logoView="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setting_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layout_container"
+        style="@style/editProfilePagesNormal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_apply"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="60dp"
+        android:animateLayoutChanges="true"
+        android:paddingTop="50dp">
+
+
+    </LinearLayout>
+
+
+    <widgets.LogoView
+        android:id="@+id/logo_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:animateLayoutChanges="true"
+        logoView:icon_size="36dp"
+        logoView:icon_src="@mipmap/ic_settings_large_white"
+        logoView:isLabelPresent="true"
+        logoView:label="@string/settings"
+        logoView:label_text_size="12sp" />
+
+    <Button
+        android:id="@+id/btn_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/layout_container"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_bg_red"
+        android:text="Apply"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/btn_apply"
+        android:background="@drawable/btn_bg_gray"
+        android:elevation="4dp"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/spinnerContainer"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+    </LinearLayout>
+</RelativeLayout>

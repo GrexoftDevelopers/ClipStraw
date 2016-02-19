@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:logoView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll_edit_profile"
+        style="@style/settings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_login">
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_sound"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:checked="false"
+                android:text="@string/sound" />
+
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_timer_count"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/timer_count" />
+
+
+            <!--<widgets.ClipstrawSwitch-->
+                <!--android:id="@+id/switch_zoom"-->
+                <!--style="@style/switches"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="Zoom" />-->
+
+            <RelativeLayout
+                android:id="@+id/layout_zoom"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/txt_zoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/seek_text_size"
+                    android:text="@string/zoom" />
+
+                <SeekBar
+                    android:id="@+id/seek_zoom"
+                    android:layout_width="150dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:padding="0dp"
+                    android:progress="20"
+                    android:progressDrawable="@drawable/seekbar_progressbar"
+                    android:secondaryProgress="100"
+                    android:thumb="@drawable/switch_bg"
+                    android:thumbOffset="0dp"
+                    android:thumbTintMode="multiply" />
+
+            </RelativeLayout>
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_camera_setting"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/camera_setting"
+                android:textSize="@dimen/text_normal" />
+
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_image_processing"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/image_processing"
+                android:textSize="@dimen/text_normal" />
+
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_wifi"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/preload_video"
+                android:textSize="@dimen/text_normal" />
+
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_slow_motion"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/slow_motion" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <!--<ImageView-->
+    <!--android:id="@+id/image_edit_profile"-->
+    <!--style="@style/imageLogoNormal"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:src="@drawable/logo" />-->
+
+    <widgets.LogoView
+        android:id="@+id/txt_edit_profile_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        logoView:icon_size="36dp"
+        logoView:icon_src="@mipmap/ic_edit_profile_large_white"
+        logoView:isLabelPresent="true"
+        logoView:label="@string/edit_profile"
+        logoView:label_text_size="12sp" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/redButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_apply_now" />
+</RelativeLayout>
+

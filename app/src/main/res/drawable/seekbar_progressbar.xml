@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item   android:id="@android:id/secondaryProgress" android:left="0dp" android:right="0dp">
+        <clip android:drawable="@mipmap/seekbar_bg"/>
+    </item>
+    <item  android:id="@android:id/progress" android:left="0dp" android:right="0dp">
+        <clip android:drawable="@mipmap/seekbar_bg_select" />
+    </item>
+</layer-list>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:drawable="@drawable/border_edit_text"
+        android:id="@+id/et_bg" />
+    <item
+        android:id="@+id/et_ic"
+        android:top="0dp" android:right="5dp">
+        <bitmap android:src="@mipmap/icon_place_holder"
+            android:gravity="right"
+            />
+    </item>
+</layer-list>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:padding="20dp">
+
+    <widgets.CircularImageView
+        android:id="@+id/user_img_circle"
+        style="@style/imageCircleNormal"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"/>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="20dp"
+        android:text="@string/name_user"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+    
+    <TextView
+        android:id="@+id/tv_name_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_msg"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textSize="@dimen/text_normal"/>
+
+</LinearLayout>

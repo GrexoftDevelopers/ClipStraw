@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/about"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_head_normal"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/red" />
+
+        <TextView
+            android:id="@+id/tv_about_us"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_us"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            android:id="@+id/tv_ads"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ads"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            android:id="@+id/tv_terms_service"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_serv"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/account"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_head_normal"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/red" />
+
+        <TextView
+            android:id="@+id/tv_network_uses"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/network_usage"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            android:id="@+id/tv_privacy_policy"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            android:id="@+id/tv_del_account"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_account"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_head_normal"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/red" />
+
+        <TextView
+            android:id="@+id/tv_walkthrough"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/walk"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <TextView
+            android:id="@+id/tv_refresh_history"
+            style="@style/paddingSettingPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/refresh_account"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_normal" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+    </LinearLayout>
+</ScrollView>

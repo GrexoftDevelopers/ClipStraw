@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:state_pressed="false">
+<layer-list>
+
+    <item android:drawable="@drawable/border_text_view"/>
+
+    <item android:right="2dp"
+        android:top="2dp"
+        android:bottom="2dp"
+        android:left="40dp"
+        android:gravity="right">
+        <color android:color="#8c8c8c"/>
+    </item>
+
+
+</layer-list>
+</item>
+
+</selector>

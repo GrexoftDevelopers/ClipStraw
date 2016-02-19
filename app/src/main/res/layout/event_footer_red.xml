@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_main_footer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/red"
+    android:orientation="horizontal"
+    android:weightSum="1.2">
+
+
+    <ImageButton
+        android:id="@+id/event_gallery"
+        android:layout_width="0dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:padding="10dp"
+        android:src="@mipmap/ic_gallery_small_white" />
+
+
+    <ImageButton
+        android:id="@+id/event_share"
+        android:layout_width="0dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:padding="10dp"
+        android:src="@mipmap/ic_share2_small_white" />
+
+
+    <ImageButton
+        android:id="@+id/event_upload"
+        android:layout_width="0dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:padding="10dp"
+        android:src="@mipmap/ic_image_placeholder_small_white" />
+
+
+    <ImageButton
+        android:id="@+id/event_blog"
+        android:layout_width="0dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:padding="10dp"
+        android:src="@mipmap/ic_msg_add_small_white" />
+
+
+    <ImageButton
+        android:id="@+id/event_edit"
+        android:layout_width="0dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:padding="10dp"
+        android:src="@mipmap/ic_edit_small_white" />
+
+
+    <ImageButton
+        android:id="@+id/event_delete"
+        android:layout_width="0dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:padding="10dp"
+        android:src="@mipmap/ic_delete_small_white" />
+
+
+</LinearLayout>
+

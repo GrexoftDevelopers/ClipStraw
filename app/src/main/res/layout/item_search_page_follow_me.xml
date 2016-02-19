@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:logoView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/circle" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_text_container"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="bottom"
+            android:text="@string/name_user"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.5"
+            android:text="@string/status"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_user_large_grey" />
+
+        <widgets.LogoView
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="35dp"
+            logoView:icon_src="@mipmap/ic_follow_small_white_plus" />
+    </RelativeLayout>
+
+</LinearLayout>

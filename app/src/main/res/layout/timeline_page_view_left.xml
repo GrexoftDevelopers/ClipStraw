@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgress
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:pipedProgressBlock="http://schemas.android.com/apk/res-auto"
+    xmlns:eventBox="http://schemas.android.com/apk/res-auto"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            pipedProgressBlock:block_type="bottom_left">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/angle_right_top_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/angle_right_top" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item1_2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_item1"
+            android:layout_toLeftOf="@+id/progress_item1"
+            android:layout_marginTop="-23dp"
+            pipedProgressBlock:block_type="horizontal_left">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/horizontal_pipe_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/horizontal_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/progress_item1_2"
+            android:layout_below="@+id/progress_item1_2"
+            android:layout_marginTop="-23dp"
+            pipedProgressBlock:block_type="left_bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/angle_top_right_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/angle_top_right" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item3"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_alignLeft="@+id/progress_item2"
+            android:layout_below="@+id/progress_item2"
+            pipedProgressBlock:block_type="vertical_down">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@mipmap/vertical_pipe_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@mipmap/vertical_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+    <widgets.EventBox
+        android:id="@+id/event_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/progress_item3"
+        android:layout_alignTop="@+id/progress_item3"
+        eventBox:eventbox_direction="left"
+        eventBox:eventbox_color="grey"
+        eventBox:eventbox_date="@string/event_date"
+        eventBox:eventbox_title="@string/event_title"/>
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/event_box"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_toRightOf="@+id/progress_item3"-->
+            <!--android:layout_alignTop="@+id/progress_item3"-->
+            <!--android:layout_alignBottom="@+id/progress_item3"-->
+            <!--android:weightSum="1.0"-->
+            <!--android:background="@mipmap/logo_box_grey_flex">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="14sp"-->
+                <!--android:text="01 JAN"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#ffffff"/>-->
+
+            <!--<View-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="#ffffff"-->
+                <!--android:layout_marginLeft="2dp"-->
+                <!--android:layout_marginRight="2dp"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="9sp"-->
+                <!--android:text="JOHN'S PARTY"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#ffffff"/>-->
+        <!--</LinearLayout>-->
+    </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgress>

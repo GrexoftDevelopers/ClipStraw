@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_container"
+    xmlns:pipedProgressBlock="http://schemas.android.com/apk/res-auto"
+    xmlns:logoView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_splash"
+    tools:context="com.clipstraw.gx.clipstraw.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/thumbnail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:weightSum="7.0">
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/layer_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:background="@android:color/black"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/layer_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="58dp">
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/layout_logo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/piped_progress"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+
+        <widgets.LogoView
+            android:id="@+id/logo_view"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            logoView:icon_src="@mipmap/ic_timeline_large_white"
+            logoView:icon_size="36dp"/>
+
+        <TextView
+            android:id="@+id/txt_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/application_name"
+            android:textColor="@android:color/white"
+            android:textSize="12pt"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgress
+        android:id="@+id/piped_progress"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item01"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="20dp"
+            pipedProgressBlock:block_type="horizontal_right">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/horizontal_pipe_orange" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/horizontal_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/progress_item01"
+            android:layout_toRightOf="@+id/progress_item01"
+            pipedProgressBlock:block_type="right_top">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/angle_right_top_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/angle_right_top" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/progress_item0"
+            android:layout_alignRight="@+id/progress_item0"
+            pipedProgressBlock:block_type="vertical_up">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/vertical_pipe_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/vertical_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/progress_item1"
+            android:layout_alignLeft="@+id/progress_item1"
+            android:layout_marginBottom="-2dp"
+            pipedProgressBlock:block_type="top_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_top_right_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_top_right" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/progress_item2"
+            android:layout_marginBottom="-2dp"
+            android:layout_toRightOf="@+id/progress_item2"
+            pipedProgressBlock:block_type="right_bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_right_bottom_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_right_bottom" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/progress_item3"
+            android:layout_below="@+id/progress_item3"
+            android:layout_marginBottom="-2dp"
+            pipedProgressBlock:block_type="vertical_down">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/vertical_pipe_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/vertical_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progress_item4"
+            android:layout_marginLeft="-23dp"
+            android:layout_marginTop="-2dp"
+            android:layout_toRightOf="@id/progress_item4"
+            pipedProgressBlock:block_type="bottom_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_bottom_right_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_bottom_right" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/progress_item5"
+            android:layout_marginLeft="-2dp"
+            android:layout_toRightOf="@id/progress_item5"
+            pipedProgressBlock:block_type="horizontal_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/horizontal_pipe_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/horizontal_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/progress_item6"
+            android:layout_marginLeft="-2dp"
+            android:layout_toRightOf="@id/progress_item6"
+            pipedProgressBlock:block_type="right_top">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_right_top_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_right_top" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/progress_item7"
+            android:layout_marginBottom="-2dp"
+            android:layout_marginLeft="-23dp"
+            android:layout_toRightOf="@id/progress_item7"
+            pipedProgressBlock:block_type="top_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_top_right_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/angle_top_right" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+        <com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock
+            android:id="@+id/progress_item9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/progress_item8"
+            android:layout_marginRight="-2dp"
+            android:layout_toRightOf="@id/progress_item8"
+            pipedProgressBlock:block_type="horizontal_right">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/horizontal_pipe_orange" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/horizontal_pipe_grey_new" />
+        </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgressBlock>
+
+
+    </com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgress>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:onClick="secondAct"
+        android:visibility="visible"/>
+
+
+</RelativeLayout>
+
+   
+

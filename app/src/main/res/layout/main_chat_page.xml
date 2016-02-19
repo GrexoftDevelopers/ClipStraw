@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/red"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:weightSum="1.0">
+
+        <LinearLayout
+            android:id="@+id/layout_top_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.55"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/application_name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_head_normal"
+                android:layout_marginRight="50dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/layout_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp">
+
+
+                <ImageView
+                    android:id="@+id/icon_message"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_incoming_msg_small_white" />
+
+                <TextView
+                    android:id="@+id/tv_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/msg_text"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_normal"
+                    android:background="@drawable/bg_notif_count" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp">
+
+
+                <ImageView
+                    android:id="@+id/icon_search"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_search_small_white" /></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/icon_followers"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_follow_small_white" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.45"
+            android:orientation="horizontal"
+            android:weightSum="0.9">
+
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_call"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3">
+
+
+
+                <ImageView
+                    android:id="@+id/icon_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/ic_call_large_white" />
+
+                <TextView
+                    android:id="@+id/tv_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/msg_text"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_normal"
+                    android:background="@drawable/bg_notif_count" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_chat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3">
+
+                <ImageView
+                    android:id="@+id/icon_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/ic_chat_large_white" />
+
+                <TextView
+                    android:id="@+id/tv_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/msg_text"
+                    android:textColor="@android:color/white"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="12dp"
+                    android:textSize="@dimen/text_normal"
+                    android:background="@drawable/bg_notif_count" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3">
+
+                <ImageView
+                    android:id="@+id/icon_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/ic_group_large_white" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        </LinearLayout>
+
+</LinearLayout>

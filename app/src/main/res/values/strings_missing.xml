@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="time">00:59</string>
+    <string name="incoming_call">Incoming call</string>
+    <string name="status">Status goes here</string>
+    <string name="profile_information">Information goes here</string>
+    <string name="web_site">Website goes here</string>
+    <string name="app_name_s">Clipstraw</string>
+    <string name="name_user">User Name</string>
+    <string name="message">Message goes here</string>
+    <string name="seen_msg">Seen it</string>
+    <string name="sender">You</string>
+    <string name="group_name">Group Name</string>
+    <string name="my_message">My Messages</string>
+    <string name="friends_followers">Friends and Followers</string>
+    <string name="my_activity">My Activity</string>
+    <string name="activity_time">Time goes here</string>
+</resources>

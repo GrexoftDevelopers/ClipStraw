@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:DialDotsProgress="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_footer"
+        android:background="@color/red"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="20dp">
+
+        <RelativeLayout
+            android:id="@+id/img_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/img_circle"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle" />
+
+            <ImageView
+                android:id="@+id/img_call_end"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="50dp"
+                android:src="@mipmap/ic_call_large_red" />
+
+            <ImageView
+                android:id="@+id/img_ring"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="140dp"
+                android:src="@drawable/image_ring" />
+        </RelativeLayout>
+
+
+        <widgets.DialDotsProgrees
+            android:id="@+id/dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:color="@android:color/white"
+            android:radius="3dp"
+            DialDotsProgress:animation_duration="500"
+            DialDotsProgress:direction="bottom"
+            DialDotsProgress:horizontal_spacing="3dp"
+            DialDotsProgress:no_of_dots="5"
+            DialDotsProgress:scale_multiplier="2" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/name_user"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_head_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_incoming_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="@string/outgoing_call"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <ImageView
+            android:id="@+id/img_call_receive"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/ic_call_large_red" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_footer"
+        style="@style/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1.0">
+
+        <RelativeLayout
+            android:id="@+id/speaker_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/speaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_speaker_small_white" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bluetooth_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_bluetooth_small_white" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/msg_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_chat_small_white" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mute_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_mute_small_white" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

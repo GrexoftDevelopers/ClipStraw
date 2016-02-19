@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_last_seen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_seen"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="@string/do_not_share_last_seen"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner_last_seen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/last_seen_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_profile_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/profile_pic"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Spinner
+            android:id="@+id/spinner_profile_pfoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/profile_photo_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/profile"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Spinner
+            android:id="@+id/spinner_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/profile_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/status_seen"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Spinner
+            android:id="@+id/spinner_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/status_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_chat_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/chat_calls"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Spinner
+            android:id="@+id/spinner_chat_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/chat_call_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_event_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/event_day"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Spinner
+            android:id="@+id/spinner_event_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/event_day_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_sharing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/sharing"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <Spinner
+            android:id="@+id/spinner_sharing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/sharing_array"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_read_receipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/read_rspt"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/turn_off_read_rspt"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner_read_receipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg_dr"
+            android:entries="@array/read_receipt_array"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+</ScrollView>

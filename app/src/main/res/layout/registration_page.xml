@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:iconEditText="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        style="@style/LayoutContainerNormal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/txt_alt">
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            style="@style/layoutContainerInnerNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/signup_msg"
+                android:textStyle="bold" />
+
+
+            <widgets.IconEditText
+                android:id="@+id/et_name"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                iconEditText:icon_mipmap="@mipmap/ic_user_avatar" />
+
+
+            <widgets.IconEditText
+                android:id="@+id/et_email"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                iconEditText:icon_mipmap="@mipmap/ic_email_avatar" />
+
+
+            <widgets.IconEditText
+                android:id="@+id/et_password"
+                style="@style/EditTextNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                iconEditText:icon_mipmap="@mipmap/ic_lock_small_red" />
+
+
+            <widgets.IconEditText
+                android:id="@+id/et_confirm_password"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                iconEditText:icon_mipmap="@mipmap/ic_lock_small_red" />
+
+
+            <Button
+                android:id="@+id/btn_register"
+                style="@style/greyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/btn_signup"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/txt_alt"
+        style="@style/styleTextAlt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_alt_login"
+        android:text="@string/already_regis" />
+
+    <Button
+        android:id="@+id/btn_alt_login"
+        style="@style/redButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_login_now"/>
+</RelativeLayout>
+

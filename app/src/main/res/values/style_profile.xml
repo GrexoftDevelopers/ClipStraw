@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="editProfilePagesNormal">
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">-43dp</item>
+        <item name="android:background">@drawable/border_profile_pages</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="editSettingPage">
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:background">@drawable/border_profile_pages</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
+    <style name="paddingSettingPages">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingBottom">10dp</item>
+
+    </style>
+
+    <style name="editSettingPageNormal">
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:background">@drawable/border_profile_pages</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
+
+
+</resources>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_footer"
+        android:background="@color/red"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingTop="70dp">
+
+        <RelativeLayout
+            android:id="@+id/img_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/img_circle"
+                style="@style/imageCircleNormal"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/img_call_end"
+                style="@style/imageLogoNormal"
+                android:src="@mipmap/ic_call_large_red" />
+
+            <ImageView
+                android:id="@+id/img_ring"
+                style="@style/imageRingNormal"
+                android:src="@drawable/image_ring" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="@string/name_user"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/text_head_normal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/time"
+            android:textColor="@color/timeColor"
+            android:textSize="@dimen/text_size_normal" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_footer"
+        style="@style/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1.0">
+
+        <RelativeLayout
+            android:id="@+id/speaker_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/speaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_speaker_small_white" />
+
+            <View
+                android:id="@+id/speaker_overlay_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:alpha="0.2"
+                android:background="#000000"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bluetooth_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_bluetooth_small_white" />
+
+            <View
+                android:id="@+id/bluetooth_overlay_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:alpha="0.4"
+                android:background="#000000"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/msg_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_chat_small_white" />
+
+            <View
+                android:id="@+id/msg_overlay_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:alpha="0.4"
+                android:background="#000000"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mute_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/image_padding">
+
+            <ImageView
+                android:id="@+id/mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/footer_icon_ring"
+                android:src="@mipmap/ic_mute_small_white" />
+
+            <View
+                android:id="@+id/mute_overlay_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:alpha="0.4"
+                android:background="#ffffff"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

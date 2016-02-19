@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:logoView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:id="@+id/scroll_notification"
+        style="@style/settings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_login">
+
+        <LinearLayout
+            android:id="@+id/layout_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_conversation_tons"
+                style="@style/switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:weightSum="1.0">
+
+                <LinearLayout
+                    android:id="@+id/layout_text_container1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/convers_tons"
+                        android:textColor="@color/grayColor"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tons_msg"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_normal" />
+
+                </LinearLayout>
+
+
+                <widgets.ClipstrawSwitch
+                    android:id="@+id/switch_conversation_tons"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:gravity="right" />
+
+
+            </LinearLayout>
+
+
+            <widgets.ClipstrawSwitch
+                android:id="@+id/switch_vibrate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_bg_dr"
+                android:padding="10dp"
+                android:text="@string/vibrate"
+                android:textColor="@color/grayColor" />
+
+
+            <!--<widgets.ClipstrawSwitch-->
+            <!--android:id="@+id/switch_text_size"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:background="@drawable/et_bg_dr"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="Text Size"-->
+            <!--android:textColor="@color/grayColor"/>-->
+
+            <RelativeLayout
+                android:id="@+id/layout_text_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_bg_dr"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/txt_text_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/seek_text_size"
+                    android:text="@string/text_size" />
+
+                <SeekBar
+                    android:id="@+id/seek_text_size"
+                    android:layout_width="140dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:padding="0dp"
+                    android:progress="20"
+                    android:progressDrawable="@drawable/seekbar_progressbar"
+                    android:secondaryProgress="100"
+                    android:thumb="@drawable/switch_bg"
+                    android:thumbOffset="0dp"
+                    android:thumbTintMode="multiply" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_chat_calls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_bg_dr"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="1.0">
+
+                <LinearLayout
+                    android:id="@+id/layout_text_container2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_head_chat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chat_calls"
+                        android:textColor="@color/grayColor"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_message_chat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calls_msg"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_normal" />
+
+                </LinearLayout>
+
+
+                <widgets.ClipstrawSwitch
+                    android:id="@+id/switch_chat_calls"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:gravity="right" />
+
+
+            </LinearLayout>
+
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/layout_gender"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:background="@drawable/border_text_view"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="1.0">-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/layout_checkbox_gender"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_weight="0.4"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal">-->
+
+
+            <!--<CheckBox-->
+            <!--android:id="@+id/chk_login"-->
+            <!--android:background="#cccccc"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Default"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="@dimen/text_check_box"/>-->
+            <!--</LinearLayout>-->
+
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:orientation="horizontal">-->
+            <!--<CheckBox-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:background="#cccccc"-->
+            <!--android:layout_height="20dp"-->
+
+            <!--android:id="@+id/checkBox2" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Select Gender"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="@dimen/text_check_box"/>-->
+
+            <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+
+            <Spinner
+                android:id="@+id/spinner_gender"
+                style="@style/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:entries="@array/gender_array" />
+
+
+            <Spinner
+                android:id="@+id/spinner_promotion"
+                style="@style/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:entries="@array/promotion_array" />
+
+
+            <Spinner
+                android:id="@+id/spinner_birthday"
+                style="@style/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:entries="@array/birthday_array" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <!--<ImageView-->
+    <!--android:id="@+id/image_edit_profile"-->
+    <!--style="@style/imageLogoNormal"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:src="@drawable/logo" />-->
+
+    <widgets.LogoView
+        android:id="@+id/txt_notification_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        logoView:icon_size="36dp"
+        logoView:icon_src="@mipmap/ic_notification_large_white"
+        logoView:isLabelPresent="true"
+        logoView:label="@string/notifications"
+        logoView:label_text_size="12sp" />
+
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/redButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/btn_apply_now" />
+</RelativeLayout>
+

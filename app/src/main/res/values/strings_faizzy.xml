@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="walkthrough">Skip Walkthrough</string>
+    <string name="go">Lets Go</string>
+    <string name="btn_sign">Sign in</string>
+    <string name="title_activity_second">second activity</string>
+    <string name="title_call_activity">call activity</string>
+    <string name="title_call_receive_activity">call receive activity</string>
+</resources>

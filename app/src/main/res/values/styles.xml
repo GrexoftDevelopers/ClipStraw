@@ -1,0 +1,124 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="EditTextNormal">
+        <item name="android:background">@mipmap/et_bg_focus</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+
+    <style name="EditTextContainerNormal">
+        <item name="android:background">@drawable/icon_edittext_bg</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">25dp</item>
+    </style>
+
+
+    <style name="LayoutContainerNormal">
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:background">@mipmap/box_bg</item>
+    </style>
+
+    <style name="layoutContainerInnerNormal">
+        <item name="android:paddingTop">35dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+
+    <style name="buttonLogInRegisterGrayNormal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/btn_bg_gray</item>
+    </style>
+
+    <style name="buttonLogInRegisterRedNormal">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@drawable/btn_bg_red</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="buttonFacebookLoginNormal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/border_fb_button</item>
+    </style>
+
+
+    <style name="imageCircleNormal">
+        <item name="android:layout_width">180dp</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:background">@drawable/circle</item>
+    </style>
+
+    <style name="imageLogoNormal">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_marginLeft">180dp</item>
+        <item name="android:layout_marginTop">40dp</item>
+    </style>
+
+    <style name="imageRingNormal">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginLeft">180dp</item>
+        <item name="android:layout_marginTop">140dp</item>
+    </style>
+
+    <style name="footerNormal">
+        <item name="android:background">@color/footer_black</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <!--<style name="edit_text_style_normal">-->
+    <!--<item name="android:background">@android:color/white</item>-->
+    <!--<item name="android:padding">10dp</item>-->
+
+    <!--<item name="android:textSize">8sp</item>-->
+    <!--</style>-->
+
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+
+    </style>
+
+</resources>

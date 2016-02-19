@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+
+        <layer-list>
+
+            <item android:drawable="@mipmap/btn_bg_gray"></item>
+
+            <item android:right="20px" android:top="3px">
+                <bitmap android:gravity="right" android:src="@mipmap/ic_next" />
+            </item>
+
+        </layer-list>
+
+    </item>
+
+    <item android:state_pressed="true">
+
+        <layer-list>
+
+            <item android:drawable="@mipmap/btn_bg_gray_ontouch"></item>
+
+            <item android:right="20px" android:top="3px">
+                <bitmap android:gravity="right" android:src="@mipmap/ic_next" />
+            </item>
+
+        </layer-list>
+
+    </item>
+
+</selector>
+
+

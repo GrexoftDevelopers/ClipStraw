@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/red"
+        android:orientation="vertical"
+        android:weightSum="1.0">
+
+        <LinearLayout
+            android:id="@+id/layout_top_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".55"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_mid_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="horizontal"
+            android:background="@android:color/white"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:weightSum="1.0">
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="0.15">
+
+                <ImageView
+                    android:id="@+id/img_search_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_booster_small_red" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_search_events_users"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="@string/most_timeline"
+                android:textColor="#666666"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/text_normal"
+                android:layout_weight="0.55"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_voice_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="0.15">
+
+                <ImageView
+                    android:id="@+id/img_voice_search_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_voice_search_small_red"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_drop_down"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="0.15">
+
+                <ImageView
+                    android:id="@+id/img_drop_down_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_actionbar_small_red"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/layout_bottom_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:paddingLeft="40dp"
+            android:paddingBottom="5dp">
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

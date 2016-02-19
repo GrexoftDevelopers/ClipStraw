@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Chat.ChatActivity">
+
+    <item
+        android:id="@+id/action_msg"
+        android:orderInCategory="200"
+        android:title="Massage"
+        app:actionLayout="@layout/item_msg_counter"
+        app:showAsAction="always">
+
+    </item>
+    <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/ic_search_small_white"
+        android:orderInCategory="200"
+        android:title="Search"
+        app:showAsAction="always">
+
+    </item>
+    <item
+        android:id="@+id/action_follower"
+        android:icon="@mipmap/ic_follow_small_white"
+        android:orderInCategory="300"
+        android:title="Followers"
+        app:showAsAction="always">
+
+    </item>
+
+</menu>

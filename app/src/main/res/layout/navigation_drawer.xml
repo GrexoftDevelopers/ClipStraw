@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/red"
+            android:weightSum="0.7">
+
+            <Button
+                android:id="@+id/btn_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_timeline_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/my_timeline"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_my_profile"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_profile_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/my_profile"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_edit_profile_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/edit_profile"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/btn_notification"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_notification_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/notifications"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_activity"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_activities_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/activity"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/btn_setting"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_settings_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/settings"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@drawable/dr_border_drawer_btn"
+                android:drawableTop="@mipmap/ic_logout_large_white"
+                android:paddingTop="15dp"
+                android:text="@string/logout"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+</RelativeLayout>

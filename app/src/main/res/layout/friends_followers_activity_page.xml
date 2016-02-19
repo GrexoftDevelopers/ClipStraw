@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/red"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1.0">
+
+        <LinearLayout
+            android:id="@+id/layout_top_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/application_name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_head_normal"
+                android:layout_marginRight="100dp"
+                android:textStyle="bold" />
+
+
+            <RelativeLayout
+                android:id="@+id/layout_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp">
+
+
+                <ImageView
+                    android:id="@+id/icon_message"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_incoming_msg_small_white" />
+
+                <TextView
+                    android:id="@+id/tv_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/msg_text"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_normal"
+                    android:background="@drawable/bg_notif_count" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/icon_search"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_search_small_white" /></RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom_head"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:weightSum="1.0">
+
+            <TextView
+                android:id="@+id/tv_friends_followers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/friends_followers"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:layout_weight="0.6"/>
+
+            <TextView
+                android:id="@+id/tv_my_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/my_activity"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold"
+                android:gravity="right|bottom"
+                android:layout_weight="0.4"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
