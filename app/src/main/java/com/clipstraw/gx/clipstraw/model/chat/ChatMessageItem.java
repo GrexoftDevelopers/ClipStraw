@@ -15,6 +15,8 @@ public class ChatMessageItem {
     private boolean isSent;
     private String content;
     private int dataSize;
+    private boolean isBinary;
+    private int conversationId;
 
     public ChatMessageItem(User partnerUser, boolean isIncoming, String time, String content) {
         this.partnerUser = partnerUser;
@@ -32,6 +34,13 @@ public class ChatMessageItem {
         return isIncoming;
     }
 
+    public boolean isBinary() {
+        return isBinary;
+    }
+
+    public void setIsBinary(boolean isBinary) {
+        this.isBinary = isBinary;
+    }
 
     public String getTime() {
         return time;
@@ -83,6 +92,7 @@ public class ChatMessageItem {
 
     }
     private  void send (){
+
 
     }
 

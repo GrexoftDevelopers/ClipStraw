@@ -41,6 +41,9 @@ public class Call {
     private  void recieve(){
 
     }
+    private void clearLog(){
+
+    }
 
     public User getPartnerUser() {
         return partnerUser;

@@ -11,10 +11,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.clipstraw.gx.clipstraw.helper.session.SessionManager;
-
-import widgets.User;
-
 /**
  * Created by Faizzy on 11-01-2016.
  */

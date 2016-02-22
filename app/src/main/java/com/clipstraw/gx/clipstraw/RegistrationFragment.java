@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import widgets.User;
-
 /**
  * Created by Faizzy on 11-01-2016.
  */

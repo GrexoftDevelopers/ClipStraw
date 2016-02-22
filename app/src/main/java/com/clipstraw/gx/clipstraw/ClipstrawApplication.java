@@ -4,7 +4,9 @@ package com.clipstraw.gx.clipstraw;
 import android.app.Application;
 import android.content.Context;
 
-import widgets.User;
+import com.clipstraw.gx.clipstraw.model.user.User;
+
+import java.util.List;
 
 /**
  * Created by FaizZy on 07-01-2016.
@@ -17,9 +19,20 @@ public class ClipstrawApplication extends Application {
 
     public static final int PREF_MODE = Context.MODE_PRIVATE;
     private User user;
+    public List<User> friends;
 
     public User getUser() {
         return user;
+    }
+
+    public User getFriend(String id) {
+
+        if (friends != null && !friends.isEmpty()){
+            for(User user : friends){
+                if(user.getUserId().equals(id)) return user;
+            }
+        }
+        return null;
     }
 
     public void setUser(User user) {
@@ -34,7 +47,7 @@ public class ClipstrawApplication extends Application {
         mInstance = this;
     }
 
-    public static ClipstrawApplication getInstance(){
+    public static ClipstrawApplication getInstance() {
         return mInstance;
     }
 }

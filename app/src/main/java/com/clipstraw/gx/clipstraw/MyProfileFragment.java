@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.clipstraw.gx.clipstraw.request.RequestManager;
 
 import widgets.CircleImageView;
@@ -25,12 +26,16 @@ public class MyProfileFragment extends Fragment {
     private View fragmentView;
     private CircleImageView imgProfile;
     private ImageRequest imgRequest;
+    RequestManager requestManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         fragmentView = inflater.inflate(R.layout.my_profile_page, container, false);
+
+        NetworkImageView networkImageView = new NetworkImageView(getActivity());
+
 
         imgProfile = (CircleImageView) fragmentView.findViewById(R.id.user_img_circle);
 
@@ -53,7 +58,9 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
-        RequestManager.getRequestManagerInstance(getActivity()).addToRequestQueue(imgRequest);
+        requestManager.getRequestManagerInstance(getActivity()).addToRequestQueue(imgRequest);
+
+
 
 
         return fragmentView;
