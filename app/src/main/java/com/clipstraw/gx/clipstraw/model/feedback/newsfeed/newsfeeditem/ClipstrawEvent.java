@@ -1,6 +1,7 @@
 package com.clipstraw.gx.clipstraw.model.feedback.newsfeed.newsfeeditem;
 
 
+import com.clipstraw.gx.clipstraw.model.ClipstrawError;
 import com.clipstraw.gx.clipstraw.model.ClipstrawMedia;
 import com.clipstraw.gx.clipstraw.model.SharedMessage;
 import com.clipstraw.gx.clipstraw.model.feedback.newsfeed.NewsFeedItem;
@@ -40,7 +41,9 @@ public class ClipstrawEvent extends NewsFeedItem {
 
     private ArrayList<SharedMessage> sharedMessages;
 
-    public ClipstrawEvent(String id, String title, String date){
+    private static ClipstrawEventListener listener;
+
+    public ClipstrawEvent(String id, String title, String date) {
         this.id = id;
         this.title = title;
         try {
@@ -74,58 +77,39 @@ public class ClipstrawEvent extends NewsFeedItem {
         return sharedMessages;
     }
 
-    public static void fetchCollection(){
 
-        Request eventRequset = new EventRequest(EventRequest.TIMELINE, new Request.RequestCallback() {
-            @Override
-            public void onCompleted(JSONObject response) {
-                try {
-                    if(!response.has("error")){
-                        JSONArray data = response.getJSONArray("data");
-                        if(data.length() > 0){
-                            ArrayList<ClipstrawEvent> eventList = new ArrayList<ClipstrawEvent>();
-                            JSONObject eventJson;
-                            for(int i = 0 ; i < data.length() ; i++){
-                                eventJson = data.getJSONObject(i);
-                                String id = eventJson.getString("id");
-                                String date = eventJson.getString("date");
-                                String title = eventJson.getString("title");
-                                eventList.add(new ClipstrawEvent(id,title,date));
-                            }
 
-                        }
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-    }
-
-    public static void getEvent(String id){
+    public static void getEvent(String id) {
 
         Request eventRequest = new EventRequest(EventRequest.GET_BY_ID, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
 
-                if (!response.has("error")){
-                    try{
+                if (!response.has("error")) {
+                    try {
                         JSONObject eventJson = response.getJSONObject("event");
+                        String id = eventJson.getString("id");
+                        String date = eventJson.getString("date");
+                        String title = eventJson.getString("title");
                         String desc_short = eventJson.getString("desc_short");
                         String desc_long = eventJson.getString("desc_long");
                         String place = eventJson.getString("place");
 
                         JSONArray taggedUsersJson = eventJson.getJSONArray("tagged_users");
-                        if(taggedUsersJson.length() > 0){
+                        if (taggedUsersJson.length() > 0) {
                             ArrayList<UserSkeleton> taggedUsers = new ArrayList<UserSkeleton>();
                             JSONObject userJson;
-                            for(int j = 0 ; j < taggedUsersJson.length() ; j++){}
+                            for (int j = 0; j < taggedUsersJson.length(); j++) {
+                                userJson = taggedUsersJson.getJSONObject(j);
+                                String userId = userJson.getString("user_id");
+                                String name = userJson.getString("name");
+                                String profileImageUrl = userJson.getString("profile_image_url");
+                                taggedUsers.add(new UserSkeleton(userId,name,profileImageUrl));
+                            }
                         }
 
-                    }
-                    catch (JSONException ex){
+
+                    } catch (JSONException ex) {
 
                     }
 
@@ -136,11 +120,13 @@ public class ClipstrawEvent extends NewsFeedItem {
 
     }
 
-    public interface ClipstrawEventListener{
+    public interface ClipstrawEventListener {
 
         public void onTimelineFetched(ArrayList<ClipstrawEvent> timeline);
 
         public void onEventFetched(ClipstrawEvent event);
+
+        public void onError(ClipstrawError error);
 
     }
 

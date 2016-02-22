@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.clipstraw.gx.clipstraw.Chat.ChatActivity;
 import com.clipstraw.gx.clipstraw.Chat.MessageActivity;
 import com.clipstraw.gx.clipstraw.Chat.SearchActivity;
+import com.clipstraw.gx.clipstraw.model.Timeline;
 import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
 
 import widgets.OnSwipeTouchListener;
@@ -41,15 +42,15 @@ public class TimelineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        fragmentView =inflater.inflate(R.layout.profile_page,container,false);
+        fragmentView = inflater.inflate(R.layout.profile_page,container,false);
         layoutFooterContainer = (LinearLayout)fragmentView.findViewById(R.id.layout_footer_container);
-        footer =inflater.inflate(R.layout.footer, null);
+        footer = inflater.inflate(R.layout.footer, null);
         layoutFooterContainer.addView(footer);
         layoutFooterContainer.setVisibility(View.GONE);
         layoutParent = (View)fragmentView.findViewById(R.id.home_page);
         View layoutHeader = (View)fragmentView.findViewById(R.id.layout_parent);
 
-
+        //Timeline timeline = new Timeline(ClipstrawApplication.getInstance().getUser());
 
         timelineView = new TimelineView(getActivity(),true);
         RelativeLayout timelineScroller = (RelativeLayout)fragmentView.findViewById(R.id.timeline_container);
@@ -71,13 +72,13 @@ public class TimelineFragment extends Fragment {
 
             @Override
             public void onTimelinePageSelected(TimelinePage timelinePage) {
-                Intent intent = new Intent(getActivity(),EventsAcivity.class);
+                Intent intent = new Intent(getActivity(), EventsAcivity.class);
                 intent.putExtra("is_published", timelinePage.isPublished());
                 getActivity().startActivity(intent);
             }
         });
-        timelineView.setYear(2015);
         timelineScroller.addView(timelineView);
+        timelineView.show();
 
 
         final View swipLeftPop= (View)fragmentView.findViewById(R.id.right_header_slide_popup);
@@ -96,8 +97,6 @@ public class TimelineFragment extends Fragment {
                 mTranslateAnimation.setDuration(300);
                 swipLeftPop.startAnimation(mTranslateAnimation);
                 swipLeftPop.setVisibility(View.GONE);
-
-
             }
             public void onSwipeLeft() {
                 Toast.makeText(getActivity(), "left", Toast.LENGTH_SHORT).show();

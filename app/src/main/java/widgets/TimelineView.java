@@ -9,12 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.clipstraw.gx.clipstraw.model.Timeline;
 import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -24,7 +26,7 @@ public class TimelineView extends LinearLayout{
 
     Context mContext;
 
-    private int year;
+    private int year, month;
 
     private boolean isLoggedInUser;
 
@@ -38,12 +40,25 @@ public class TimelineView extends LinearLayout{
 
     private boolean pagesAdded;
 
+    private Timeline timeline;
+
     TimelineListener timelineListener;
 
     public TimelineView(Context context, boolean isLoggedInUser) {
         super(context);
         this.isLoggedInUser = isLoggedInUser;
+        Date date = Calendar.getInstance().getTime();
+        this.year = date.getYear();
+        this.month = date.getMonth();
         init(context);
+    }
+
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
     }
 
     public void setTimelineListener(TimelineListener timelineListener) {
@@ -113,6 +128,15 @@ public class TimelineView extends LinearLayout{
         new EventPageLoader().execute("");
     }
 
+    public void setMonth(int month){
+        this.month = month;
+        new EventPageLoader().execute("");
+    }
+
+    public void show(){
+        new EventPageLoader().execute("");
+    }
+
     private void setTotalLevelsAccordingToScreenSize(){
         if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
             totalLevels = 5;
@@ -169,7 +193,7 @@ public class TimelineView extends LinearLayout{
 
         private void renderTimeline(){
             Calendar calendar = Calendar.getInstance();
-            calendar.set(year,1,1);
+            calendar.set(year,month == 0 ? 1 : month,1);
             Date date;
             int limit = isLeapYear() ? 366 : 365;
             for(int i = 1 ; i <= 30; i++){
