@@ -96,6 +96,7 @@ public class FeedbackItem {
     public boolean isLiked() {
         return isLiked;
     }
+
     public void fetchComments(int offset, int count){
         Request getCommentRequest = new NewsFeedRequest(NewsFeedRequest.GET_COMMENTS, new Request.RequestCallback() {
             @Override
@@ -182,11 +183,193 @@ public class FeedbackItem {
         addCommentRequest.execute();
 
     }
+
+    public void deleteComment(final Comment comment){
+        Request deleteCommentRequest = new NewsFeedRequest(NewsFeedRequest.DELETE_COMMENT, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+                if(!response.has("error")){
+
+                    try {
+                        JSONObject data = response.getJSONObject("data");
+                        comment.setId(data.getString("id"));
+                        if(feedbackListener != null){
+                            feedbackListener.onCommentDeleted(comment);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    try {
+                        response.getJSONObject("error").getString("error_msg");
+                        if(feedbackListener != null){
+                            feedbackListener.onError();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+        Bundle parameter = new Bundle();
+        parameter.putString("id", id);
+        deleteCommentRequest.setParameters(parameter);
+        deleteCommentRequest.execute();
+    }
+
+    public void editComment(final Comment comment){
+        Request editCommentRequest = new NewsFeedRequest(NewsFeedRequest.EDIT_COMMENT, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+
+                if(!response.has("error")){
+
+                    try {
+                        JSONObject data = response.getJSONObject("data");
+                        comment.setId(data.getString("id"));
+                        if(feedbackListener != null){
+                            feedbackListener.onCommentEdited(comment);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    try {
+                        response.getJSONObject("error").getString("error_msg");
+                        if(feedbackListener != null){
+                            feedbackListener.onError();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+        Bundle parameter = new Bundle();
+        parameter.putString("id", id);
+        editCommentRequest.setParameters(parameter);
+        editCommentRequest.execute();
+    }
+
+    public void addLike(final Comment comment){
+        Request addLikeRequest = new NewsFeedRequest(NewsFeedRequest.ADD_LIKE, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+
+                if(!response.has("error")){
+                    try {
+                        JSONObject data = response.getJSONObject("data");
+                        comment.setId(data.getString("id"));
+                        if(feedbackListener != null){
+                            feedbackListener.onLikeAdd(comment);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    try {
+                        response.getJSONObject("error").getString("error_msg");
+                        if(feedbackListener != null){
+                            feedbackListener.onError();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+        Bundle parameter = new Bundle();
+        parameter.putString("id", id);
+        addLikeRequest.setParameters(parameter);
+        addLikeRequest.execute();
+    }
+
+    public void unLike(final Comment comment){
+
+        Request unLikeRequest = new NewsFeedRequest(NewsFeedRequest.UNLIKE, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+
+                if(!response.has("error")){
+                    try {
+                        JSONObject data = response.getJSONObject("data");
+                        comment.setId(data.getString("id"));
+                        if(feedbackListener != null){
+                            feedbackListener.onUnLike(comment);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    try {
+                        response.getJSONObject("error").getString("error_msg");
+                        if(feedbackListener != null){
+                            feedbackListener.onError();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+        Bundle parameter = new Bundle();
+        parameter.putString("id", id);
+        unLikeRequest.setParameters(parameter);
+        unLikeRequest.execute();
+    }
+
+    public void getBuyId(final Comment comment){
+
+        Request getIdRequest = new NewsFeedRequest(NewsFeedRequest.GET_BUY_ID, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+
+                if(!response.has("error")){
+                    try {
+                        JSONObject data = response.getJSONObject("data");
+                        comment.setId(data.getString("id"));
+                        if(feedbackListener != null){
+                            feedbackListener.onGetId(comment);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    try {
+                        response.getJSONObject("error").getString("error_msg");
+                        if(feedbackListener != null){
+                            feedbackListener.onError();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        Bundle parameter = new Bundle();
+        parameter.putString("id", id);
+        getIdRequest.setParameters(parameter);
+        getIdRequest.execute();
+    }
     public interface FeedbackListener{
 
         public void onCommentsFetched(ArrayList<Comment> comments);
 
-        public void onCommentAdd(final Comment comment);
+        public void onCommentAdd(Comment comment);
+
+        public void onCommentDeleted(Comment comment);
+
+        public void onCommentEdited(Comment comment);
+
+        public void onLikeAdd(Comment comment);
+
+        public void onUnLike(Comment comment);
+
+        public void onGetId(Comment comment);
 
         public void onError();
 
