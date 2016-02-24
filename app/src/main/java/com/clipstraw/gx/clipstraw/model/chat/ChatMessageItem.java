@@ -106,7 +106,7 @@ public class ChatMessageItem {
                 try {
                     if (!response.has("error")) {
 
-                        String receivedId = response.getString("receive_id");
+                        String receivedId = response.getString("id");
                         if (chatItemListener != null) {
                             chatItemListener.onReceive(receivedId);
 
@@ -123,7 +123,7 @@ public class ChatMessageItem {
             }
         });
         Bundle params = new Bundle();
-        params.putString("receive_id", this.id);
+        params.putString("id", this.id);
         receiveRequest.setParameters(params);
         receiveRequest.execute();
 

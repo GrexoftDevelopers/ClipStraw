@@ -12,15 +12,14 @@ public class ChatRequest extends Request {
     private static final String API_NAME = "Chat";
     public static final String ADD_MEMBER = "add_member";
     public static final String REMOVE_MEMBER = "remove_member";
-    public static final String DELETE_GROUP = "delete_group";
+    public static final String DELETE = "delete";
     public static final String FETCH_ALL_GROUPS = "fetch_all_groups";
     public static final String LEAVE_GROUP = "leave_group";
-    public static final String ADD_CHAT_MESSAGE = "add_chat_message";
+    public static final String FETCH_ALL_MSG="fetch_all_msg";
     public static final String DELETE_CHAT_MESSAGE = "delete_chat_message";
-    public static final String MARK_AS_UNREAD = "mark_as_unread";
     public static final String SEND_CHAT = "send_chat";
-    public static final String DELETE_CONVERSATION = "delete_conversation";
-    public static final String RECEIVE_CHAT="receive_chat";
+    public static final String RECEIVE_CHAT = "receive_chat";
+    public static final String CLEAR ="clear";
 
 
     public ChatRequest(String apiEndPoint, RequestCallback callback) {
@@ -48,9 +47,9 @@ public class ChatRequest extends Request {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            case DELETE_GROUP:
+            case DELETE:
                 try {
-                    jsonResponse.put("group_id", parameters.getString("group_id"));
+                    jsonResponse.put("id", parameters.getString("id"));
                     callback.onCompleted(jsonResponse);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -75,6 +74,14 @@ public class ChatRequest extends Request {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            case FETCH_ALL_MSG:
+                try{
+                    jsonResponse.put("id",parameters.getString("id"));
+                    callback.onCompleted(jsonResponse);
+
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
             case LEAVE_GROUP:
                 try {
                     //jsonResponse.put("group_id",parameters.getString("group_id"));
@@ -95,7 +102,15 @@ public class ChatRequest extends Request {
             case RECEIVE_CHAT:
 
                 try {
-                    jsonResponse.put("receive_id","chat1234");
+                    jsonResponse.put("id", "chat1234");
+                    callback.onCompleted(jsonResponse);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            case CLEAR:
+                try {
+                    jsonResponse.put("id", parameters.getString("id"));
                     callback.onCompleted(jsonResponse);
                 } catch (JSONException e) {
                     e.printStackTrace();
