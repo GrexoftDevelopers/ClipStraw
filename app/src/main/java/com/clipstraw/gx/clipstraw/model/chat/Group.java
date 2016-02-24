@@ -6,10 +6,11 @@ import com.clipstraw.gx.clipstraw.model.user.User;
 import com.clipstraw.gx.clipstraw.request.ChatRequest;
 import com.clipstraw.gx.clipstraw.request.Request;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,38 +21,54 @@ public class Group {
     private String id;
 
     private String groupName;
-    private URI displayImageUri;
+    private String displayImageUri;
     private List<User> memberUsersList;
 
 
-    public void setGroupListener(GroupListener groupListener) {
-        this.groupListener = groupListener;
-    }
-
     private List<ChatMessageItem> chatMessageList;
     private int ubReadMsgCount;
-    private GroupListener groupListener;
+    private boolean isUnread;
+    private static GroupListener groupListener;
 
-    public Group(String groupName, List<User> memberUsersList, List<ChatMessageItem> chatMessageList, URI displayImageUri) {
+    public Group(String id, String groupName, String displayImageUri) {
+        this.id = id;
         this.groupName = groupName;
-        this.memberUsersList = memberUsersList;
-        this.chatMessageList = chatMessageList;
         this.displayImageUri = displayImageUri;
+    }
+
+    public List<ChatMessageItem> getChatMessageList() {
+        return chatMessageList;
+    }
+
+    public void setChatMessageList(List<ChatMessageItem> chatMessageList) {
+        this.chatMessageList = chatMessageList;
+    }
+
+    public List<User> getMemberUsersList() {
+        return memberUsersList;
+    }
+
+    public void setMemberUsersList(List<User> memberUsersList) {
+        this.memberUsersList = memberUsersList;
     }
 
     public String getGroupName() {
         return groupName;
     }
 
+    public void setGroupListener(GroupListener groupListener) {
+        this.groupListener = groupListener;
+    }
+
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
 
-    public URI getDisplayImageUri() {
+    public String getDisplayImageUri() {
         return displayImageUri;
     }
 
-    public void setDisplayImageUri(URI displayImageUri) {
+    public void setDisplayImageUri(String displayImageUri) {
         this.displayImageUri = displayImageUri;
     }
 
@@ -82,8 +99,7 @@ public class Group {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                else{
+                } else {
 
                 }
 
@@ -111,7 +127,7 @@ public class Group {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
 
                 }
 
@@ -122,10 +138,9 @@ public class Group {
         parameters.putString("group_id", this.getId());
         removeMemberRequest.setParameters(parameters);
         removeMemberRequest.execute();
-
     }
 
-    private void deleteGroup(String groupId) {
+    private void deleteGroup() {
 
         Request deleteGroupRequest = new ChatRequest(ChatRequest.DELETE_GROUP, new Request.RequestCallback() {
             @Override
@@ -134,12 +149,12 @@ public class Group {
                     try {
                         String groupId = response.getString("group_Id");
                         if (groupListener != null) {
-
+                            groupListener.onGroupDelete(Group.this);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
 
                 }
 
@@ -153,11 +168,76 @@ public class Group {
 
     }
 
-    private void leaveGroup() {
+    public static void fetchAllGroups() {
+        Request fetchAllGroupsRequest = new ChatRequest(ChatRequest.FETCH_ALL_GROUPS, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+                if (!response.has("error")) {
+                    try {
+                        ArrayList<Group> groupArrayList = null;
+                        JSONArray groups = response.getJSONArray("groups");
+                        if (groups.length() > 0) {
+                            for (int i = 0; i < groups.length(); i++) {
+                                groupArrayList = new ArrayList<Group>();
+                                JSONObject group = groups.getJSONObject(i);
+                                String groupName = group.getString("group_name");
+                                String groupId = group.getString("group_id");
+                                String groupImageUrl = group.getString("group_image_url");
+                                Group clipStrawGroup = new Group(groupId, groupName, groupImageUrl);
+                                groupArrayList.add(clipStrawGroup);
+
+                            }
+                        }
+                        if (groupListener != null) {
+                            groupListener.onGroupFetched();
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+
+                }
+
+            }
+        });
+
+        fetchAllGroupsRequest.execute();
+
+    }
+
+    private void leaveGroup(final User user) {
+        Request leaveGroupRequest = new ChatRequest(ChatRequest.LEAVE_GROUP, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+                if (!response.has("error")) {
+                    try {
+
+                        String userId = response.getString("user_id");
+                        memberUsersList.remove(user);
+                        if (groupListener != null) {
+                            groupListener.onLeaveGroup(user);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+
+                }
+
+
+            }
+        });
+        Bundle parameters = new Bundle();
+        parameters.putString("user_id", user.getUserId());
+        leaveGroupRequest.setParameters(parameters);
+        leaveGroupRequest.execute();
 
     }
 
     private void markAsUnread() {
+        isUnread =true;
 
     }
 
@@ -166,17 +246,14 @@ public class Group {
 
         public void onRemoveMember(User user);
 
-        public void onGroupDelete(String id);
+        public void onGroupDelete(Group group);
+
+        public void onGroupFetched();
+
+        public void onLeaveGroup(User userId);
+
         public void onError();
     }
 
-    public static void fetchAllGroups() {
-        Request fetchAllGroups = new ChatRequest(ChatRequest.FETCH_ALL_GROUPS, new Request.RequestCallback() {
-            @Override
-            public void onCompleted(JSONObject response) {
 
-            }
-        });
-
-    }
 }

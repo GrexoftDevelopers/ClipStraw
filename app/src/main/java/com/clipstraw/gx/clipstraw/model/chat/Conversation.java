@@ -31,4 +31,7 @@ public class Conversation {
     private  void  delete(){
 
     }
+    private void clear(){
+
+    }
 }

@@ -20,6 +20,7 @@ public class ChatRequest extends Request {
     public static final String MARK_AS_UNREAD = "mark_as_unread";
     public static final String SEND_CHAT = "send_chat";
     public static final String DELETE_CONVERSATION = "delete_conversation";
+    public static final String RECEIVE_CHAT="receive_chat";
 
 
     public ChatRequest(String apiEndPoint, RequestCallback callback) {
@@ -61,11 +62,12 @@ public class ChatRequest extends Request {
                     JSONObject group;
                     for (int i = 0; i < 15; i++) {
                         group = new JSONObject();
-                        group.put("name", "Fun "+i);
+                        group.put("name", "Fun " + i);
                         group.put("group_id", "group1234");
                         group.put("group_image_url", "abc");
-                        group.put("time","12:00");
-                        group.put("last_msg","this is a message");
+                        group.put("time", "12:00");
+                        group.put("last_msg", "this is a message");
+                        group.put("unread_count", "5");
                         groups.put(group);
                     }
                     jsonResponse.put("groups", groups);
@@ -74,11 +76,28 @@ public class ChatRequest extends Request {
                     e.printStackTrace();
                 }
             case LEAVE_GROUP:
-                try{
-                    jsonResponse.put("group_id",parameters.getString("group_id"));
+                try {
+                    //jsonResponse.put("group_id",parameters.getString("group_id"));
+                    jsonResponse.put("user_id", parameters.getString("user_id"));
                     callback.onCompleted(jsonResponse);
 
-                }catch (JSONException e){
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            case SEND_CHAT:
+                try {
+                    jsonResponse.put("id", "chat1234");
+                    callback.onCompleted(jsonResponse);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            case RECEIVE_CHAT:
+
+                try {
+                    jsonResponse.put("receive_id","chat1234");
+                    callback.onCompleted(jsonResponse);
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
