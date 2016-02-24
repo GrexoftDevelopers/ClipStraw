@@ -20,6 +20,18 @@ public class ClipstrawError {
         this.resolution = resolution;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
     public static ClipstrawError createError(JSONObject error){
 
         try {

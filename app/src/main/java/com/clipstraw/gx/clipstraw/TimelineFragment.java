@@ -17,8 +17,11 @@ import android.widget.Toast;
 import com.clipstraw.gx.clipstraw.Chat.ChatActivity;
 import com.clipstraw.gx.clipstraw.Chat.MessageActivity;
 import com.clipstraw.gx.clipstraw.Chat.SearchActivity;
+import com.clipstraw.gx.clipstraw.helper.session.SessionManager;
 import com.clipstraw.gx.clipstraw.model.Timeline;
-import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
+import com.clipstraw.gx.clipstraw.model.session.ClipstrawSession;
+import com.clipstraw.gx.clipstraw.model.user.UserSkeleton;
+import widgets.TimelinePage;
 
 import widgets.OnSwipeTouchListener;
 import widgets.TimelineView;
@@ -50,18 +53,21 @@ public class TimelineFragment extends Fragment {
         layoutParent = (View)fragmentView.findViewById(R.id.home_page);
         View layoutHeader = (View)fragmentView.findViewById(R.id.layout_parent);
 
-        //Timeline timeline = new Timeline(ClipstrawApplication.getInstance().getUser());
+        ClipstrawSession session = SessionManager.getInstance().getActiveSession();
+        Timeline timeline = new Timeline(new UserSkeleton(session.getUserId(),session.getUserName(),"abc"));
 
-        timelineView = new TimelineView(getActivity(),true);
+        timelineView = new TimelineView(getActivity());
+        timelineView.setTimeline(timeline);
         RelativeLayout timelineScroller = (RelativeLayout)fragmentView.findViewById(R.id.timeline_container);
 
         final ProgressBar progressBar = (ProgressBar)timelineScroller.findViewById(R.id.timeline_progress);
 
-        timelineView.setTimelineListener(new TimelineView.TimelineListener() {
+        timelineView.setTimelineViewListener(new TimelineView.TimelineViewListener() {
             @Override
             public void onTimelineFetchStarted() {
                 progressBar.setVisibility(View.VISIBLE);
                 progressBar.setProgress(100);
+                Toast.makeText(getContext(),"timeline fetched started.",Toast.LENGTH_SHORT).show();
             }
 
             @Override

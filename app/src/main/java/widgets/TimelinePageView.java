@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.clipstraw.gx.clipstraw.R;
 import com.clipstraw.gx.clipstraw.pipedprogressbar.PipedProgress;
-import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
 
 /**
  * Created by tahir on 2/8/2016.

@@ -17,6 +17,8 @@ import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
 /**
@@ -46,11 +48,16 @@ public class ClipstrawEvent extends NewsFeedItem {
     public ClipstrawEvent(String id, String title, String date) {
         this.id = id;
         this.title = title;
-        try {
-            this.date = new SimpleDateFormat("DD MM YYYY").parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.date = Calendar.getInstance().getTime();
+//        try {
+//            //this.date = new SimpleDateFormat("DD MM YYYY").parse(date);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public ClipstrawEvent(Date date){
+        this.date = date;
     }
 
     public String getTitle() {

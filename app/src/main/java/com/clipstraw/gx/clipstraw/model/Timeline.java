@@ -1,5 +1,7 @@
 package com.clipstraw.gx.clipstraw.model;
 
+import android.os.Bundle;
+
 import com.clipstraw.gx.clipstraw.model.feedback.newsfeed.newsfeeditem.ClipstrawEvent;
 import com.clipstraw.gx.clipstraw.model.user.UserSkeleton;
 import com.clipstraw.gx.clipstraw.request.EventRequest;
@@ -30,9 +32,11 @@ public class Timeline {
 
     public Timeline(UserSkeleton user) {
         this.user = user;
-        Date date = Calendar.getInstance().getTime();
-        year = date.getYear();
-        month = date.getMonth();
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        System.out.println("year is : " + year);
+        System.out.println("month is : " + month);
     }
 
     public void setListener(TimelineListener listener) {
@@ -45,6 +49,10 @@ public class Timeline {
 
     public int getMonth() {
         return month;
+    }
+
+    public UserSkeleton getUser() {
+        return user;
     }
 
     public ArrayList<ClipstrawEvent> getEvents() {
@@ -63,13 +71,14 @@ public class Timeline {
 
     public void fetchTimeline() {
 
-        Request eventRequset = new EventRequest(EventRequest.TIMELINE, new Request.RequestCallback() {
+        Request timelineRequest = new EventRequest(EventRequest.TIMELINE, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
                 try {
                     if (!response.has("error")) {
+                        System.out.println("inside on completed");
                         JSONArray data = response.getJSONArray("data");
-                        ArrayList<ClipstrawEvent> eventList = new ArrayList<ClipstrawEvent>();
+                        events = new ArrayList<ClipstrawEvent>();
                         if (data.length() > 0) {
                             JSONObject eventJson;
                             for (int i = 0; i < data.length(); i++) {
@@ -77,7 +86,7 @@ public class Timeline {
                                 String id = eventJson.getString("id");
                                 String date = eventJson.getString("date");
                                 String title = eventJson.getString("title");
-                                eventList.add(new ClipstrawEvent(id, title, date));
+                                events.add(new ClipstrawEvent(id, title, date));
                             }
                         }
                         if (listener != null) {
@@ -94,6 +103,12 @@ public class Timeline {
                 }
             }
         });
+        Bundle parameters = new Bundle();
+        parameters.putInt("year",year);
+        parameters.putInt("month",month);
+        parameters.putString("user_id", user.getUserId());
+        timelineRequest.setParameters(parameters);
+        timelineRequest.execute();
 
     }
 
