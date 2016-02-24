@@ -2,6 +2,7 @@ package com.clipstraw.gx.clipstraw.model.chat;
 
 import android.os.Bundle;
 
+import com.clipstraw.gx.clipstraw.model.ClipstrawError;
 import com.clipstraw.gx.clipstraw.model.user.User;
 import com.clipstraw.gx.clipstraw.request.ChatRequest;
 import com.clipstraw.gx.clipstraw.request.Request;
@@ -89,18 +90,23 @@ public class Group {
         Request addMemberRequest = new ChatRequest(ChatRequest.ADD_MEMBER, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if (!response.has("error")) {
-                    try {
+                try {
+                    if (!response.has("error")) {
+
                         String userId = response.getString("user_id");
                         memberUsersList.add(user);
                         if (groupListener != null) {
                             groupListener.onAddMember(user);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
 
+                    } else {
+
+                        if (groupListener != null) {
+                            groupListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -117,18 +123,23 @@ public class Group {
         Request removeMemberRequest = new ChatRequest(ChatRequest.REMOVE_MEMBER, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if (!response.has("error")) {
-                    try {
+                try {
+                    if (!response.has("error")) {
+
                         String userId = response.getString("user_id");
                         memberUsersList.remove(user);
                         if (groupListener != null) {
                             groupListener.onRemoveMember(user);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
 
+                    } else {
+
+                        if (groupListener != null) {
+                            groupListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -145,17 +156,22 @@ public class Group {
         Request deleteGroupRequest = new ChatRequest(ChatRequest.DELETE_GROUP, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if (!response.has("error")) {
-                    try {
+                try {
+                    if (!response.has("error")) {
+
                         String groupId = response.getString("group_Id");
                         if (groupListener != null) {
                             groupListener.onGroupDelete(Group.this);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
 
+                    } else {
+
+                        if (groupListener != null) {
+                            groupListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
 
@@ -172,8 +188,9 @@ public class Group {
         Request fetchAllGroupsRequest = new ChatRequest(ChatRequest.FETCH_ALL_GROUPS, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if (!response.has("error")) {
-                    try {
+                try {
+                    if (!response.has("error")) {
+
                         ArrayList<Group> groupArrayList = null;
                         JSONArray groups = response.getJSONArray("groups");
                         if (groups.length() > 0) {
@@ -193,11 +210,14 @@ public class Group {
                         }
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
+                    } else {
 
+                        if (groupListener != null) {
+                            groupListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -211,19 +231,22 @@ public class Group {
         Request leaveGroupRequest = new ChatRequest(ChatRequest.LEAVE_GROUP, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if (!response.has("error")) {
-                    try {
-
+                try {
+                    if (!response.has("error")) {
                         String userId = response.getString("user_id");
                         memberUsersList.remove(user);
                         if (groupListener != null) {
                             groupListener.onLeaveGroup(user);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
 
+                    } else {
+
+                        if (groupListener != null) {
+                            groupListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
 
@@ -237,7 +260,7 @@ public class Group {
     }
 
     private void markAsUnread() {
-        isUnread =true;
+        isUnread = true;
 
     }
 
@@ -252,7 +275,7 @@ public class Group {
 
         public void onLeaveGroup(User userId);
 
-        public void onError();
+        public void onError(ClipstrawError error);
     }
 
 
