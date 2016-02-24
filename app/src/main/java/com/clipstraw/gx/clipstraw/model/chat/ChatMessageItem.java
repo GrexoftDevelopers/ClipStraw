@@ -2,6 +2,7 @@ package com.clipstraw.gx.clipstraw.model.chat;
 
 import android.os.Bundle;
 
+import com.clipstraw.gx.clipstraw.model.ClipstrawError;
 import com.clipstraw.gx.clipstraw.model.user.User;
 import com.clipstraw.gx.clipstraw.request.ChatRequest;
 import com.clipstraw.gx.clipstraw.request.Request;
@@ -26,7 +27,7 @@ public class ChatMessageItem {
     private int dataSize;
     private boolean isBinary;
     private String conversationId;
-   private ChatItemListener chatItemListener;
+    private ChatItemListener chatItemListener;
 
 
     public ChatMessageItem(String conversationId, boolean isIncoming, String time, String content) {
@@ -41,7 +42,7 @@ public class ChatMessageItem {
     }
 
     public String getConversationId() {
-      return conversationId;
+        return conversationId;
     }
 
     public void setChatItemListener(ChatItemListener chatItemListener) {
@@ -51,7 +52,6 @@ public class ChatMessageItem {
     public boolean isIncoming() {
         return isIncoming;
     }
-
 
 
     public String getTime() {
@@ -97,56 +97,68 @@ public class ChatMessageItem {
         this.dataSize = dataSize;
     }
 
-    private void  receive(){
+    private void receive() {
 
         Request receiveRequest = new ChatRequest(ChatRequest.RECEIVE_CHAT, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if(!response.has("error")){
-                    try {
+
+                try {
+                    if (!response.has("error")) {
+
                         String receivedId = response.getString("receive_id");
-                        if(chatItemListener !=null){
+                        if (chatItemListener != null) {
                             chatItemListener.onReceive(receivedId);
+
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
+                        if (chatItemListener != null) {
+                            chatItemListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
                     }
-                }
-                else{
-                    
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
             }
         });
         Bundle params = new Bundle();
-        params.putString("receive_id",this.id);
+        params.putString("receive_id", this.id);
         receiveRequest.setParameters(params);
         receiveRequest.execute();
 
 
     }
-    private void  delete(){
+
+    private void delete() {
 
 
     }
-    private  void send (){
+
+    private void send() {
         Request sendRequest = new ChatRequest(ChatRequest.SEND_CHAT, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
-                if(!response.has("error")){
-                    try {
+                try {
+                    if (!response.has("error")) {
+
                         id = response.getString("id");
 
-                        if(chatItemListener != null){
+                        if (chatItemListener != null) {
                             chatItemListener.onSendChat(ChatMessageItem.this);
                         }
-                    }
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                else {
 
+                    } else {
+
+                        if (chatItemListener != null) {
+
+                            chatItemListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -154,15 +166,19 @@ public class ChatMessageItem {
 
         Bundle parameters = new Bundle();
         parameters.putString("conversation_id", getConversationId());
-        parameters.putString("time",getTime());
-        parameters.putString("content",getContent());
+        parameters.putString("time", getTime());
+        parameters.putString("content", getContent());
         sendRequest.setParameters(parameters);
         sendRequest.execute();
 
     }
-    public  interface  ChatItemListener{
+
+    public interface ChatItemListener {
         public void onSendChat(ChatMessageItem chatMessageItem);
+
         public void onReceive(String receivedId);
+
+        public void onError(ClipstrawError error);
     }
 
 }
