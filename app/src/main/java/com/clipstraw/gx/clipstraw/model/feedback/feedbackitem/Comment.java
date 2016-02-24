@@ -21,7 +21,7 @@ public class Comment extends FeedbackItem {
     private String content;
 
     public Comment(String content, String id, UserSkeleton user, Date date, int likeCount, int commentCount, ArrayList<Comment> comments, boolean isLiked) {
-        super(content, id, user, date, likeCount, commentCount, comments, isLiked);
+        //super(content, id, user, date, likeCount, commentCount, comments, isLiked);
     }
 
 
