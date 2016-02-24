@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.clipstraw.gx.clipstraw.model.ClipstrawError;
 import com.clipstraw.gx.clipstraw.model.user.User;
+import com.clipstraw.gx.clipstraw.model.user.UserSkeleton;
 import com.clipstraw.gx.clipstraw.request.ChatRequest;
 import com.clipstraw.gx.clipstraw.request.Request;
 
@@ -12,78 +13,54 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Faizzy on 15-02-2016.
  */
-public class Group {
-
-    private String id;
-
+public class Group extends Conversation {
     private String groupName;
-    private String displayImageUri;
-    private List<User> memberUsersList;
-
-
-    private List<ChatMessageItem> chatMessageList;
-    private int ubReadMsgCount;
-    private boolean isUnread;
+    private String displayImageUrl;
     private static GroupListener groupListener;
 
-    public Group(String id, String groupName, String displayImageUri) {
-        this.id = id;
-        this.groupName = groupName;
-        this.displayImageUri = displayImageUri;
+    public Group(ArrayList<UserSkeleton> partners, ArrayList<ChatMessageItem> chatMessageList) {
+
+        super(partners, chatMessageList);
     }
 
-    public List<ChatMessageItem> getChatMessageList() {
-        return chatMessageList;
-    }
-
-    public void setChatMessageList(List<ChatMessageItem> chatMessageList) {
-        this.chatMessageList = chatMessageList;
-    }
-
-    public List<User> getMemberUsersList() {
-        return memberUsersList;
-    }
-
-    public void setMemberUsersList(List<User> memberUsersList) {
-        this.memberUsersList = memberUsersList;
-    }
-
-    public String getGroupName() {
-        return groupName;
+    public Group(String id, String groupName ,String displayImageUrl){
+        super(id);
+        this.groupName =groupName;
+        this.displayImageUrl =displayImageUrl;
     }
 
     public void setGroupListener(GroupListener groupListener) {
         this.groupListener = groupListener;
     }
 
+
+    public ArrayList<ChatMessageItem> getChatMessageList() {
+        return chatMessageList;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
 
-    public String getDisplayImageUri() {
-        return displayImageUri;
+    public String getDisplayImageUrl() {
+        return displayImageUrl;
     }
 
-    public void setDisplayImageUri(String displayImageUri) {
-        this.displayImageUri = displayImageUri;
+    public void setDisplayImageUrl(String displayImageUrl) {
+        this.displayImageUrl = displayImageUrl;
     }
 
-    public int getUbReadMsgCount() {
-        return ubReadMsgCount;
-    }
 
-    public void setUbReadMsgCount(int ubReadMsgCount) {
-        this.ubReadMsgCount = ubReadMsgCount;
-    }
 
-    public String getId() {
-        return id;
-    }
 
     private void addMember(final User user) {
 
@@ -94,7 +71,7 @@ public class Group {
                     if (!response.has("error")) {
 
                         String userId = response.getString("user_id");
-                        memberUsersList.add(user);
+                        partners.add(user);
                         if (groupListener != null) {
                             groupListener.onAddMember(user);
                         }
@@ -127,7 +104,7 @@ public class Group {
                     if (!response.has("error")) {
 
                         String userId = response.getString("user_id");
-                        memberUsersList.remove(user);
+                        partners.remove(user);
                         if (groupListener != null) {
                             groupListener.onRemoveMember(user);
                         }
@@ -151,38 +128,6 @@ public class Group {
         removeMemberRequest.execute();
     }
 
-    private void deleteGroup() {
-
-        Request deleteGroupRequest = new ChatRequest(ChatRequest.DELETE_GROUP, new Request.RequestCallback() {
-            @Override
-            public void onCompleted(JSONObject response) {
-                try {
-                    if (!response.has("error")) {
-
-                        String groupId = response.getString("group_Id");
-                        if (groupListener != null) {
-                            groupListener.onGroupDelete(Group.this);
-                        }
-
-                    } else {
-
-                        if (groupListener != null) {
-                            groupListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
-        Bundle parameters = new Bundle();
-        parameters.putString("group_id", this.getId());
-        deleteGroupRequest.setParameters(parameters);
-        deleteGroupRequest.execute();
-
-    }
 
     public static void fetchAllGroups() {
         Request fetchAllGroupsRequest = new ChatRequest(ChatRequest.FETCH_ALL_GROUPS, new Request.RequestCallback() {
@@ -200,6 +145,7 @@ public class Group {
                                 String groupName = group.getString("group_name");
                                 String groupId = group.getString("group_id");
                                 String groupImageUrl = group.getString("group_image_url");
+
                                 Group clipStrawGroup = new Group(groupId, groupName, groupImageUrl);
                                 groupArrayList.add(clipStrawGroup);
 
@@ -234,7 +180,7 @@ public class Group {
                 try {
                     if (!response.has("error")) {
                         String userId = response.getString("user_id");
-                        memberUsersList.remove(user);
+                        partners.remove(user);
                         if (groupListener != null) {
                             groupListener.onLeaveGroup(user);
                         }
@@ -259,23 +205,15 @@ public class Group {
 
     }
 
-    private void markAsUnread() {
-        isUnread = true;
-
-    }
-
-    public interface GroupListener {
+    public interface GroupListener extends ConversationListener {
         public void onAddMember(User user);
 
         public void onRemoveMember(User user);
-
-        public void onGroupDelete(Group group);
 
         public void onGroupFetched();
 
         public void onLeaveGroup(User userId);
 
-        public void onError(ClipstrawError error);
     }
 
 
