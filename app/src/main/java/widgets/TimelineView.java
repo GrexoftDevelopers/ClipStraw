@@ -8,8 +8,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
+import com.clipstraw.gx.clipstraw.helper.CommonUtilities;
+import com.clipstraw.gx.clipstraw.helper.session.SessionManager;
+import com.clipstraw.gx.clipstraw.model.ClipstrawError;
+import com.clipstraw.gx.clipstraw.model.Timeline;
+import com.clipstraw.gx.clipstraw.model.feedback.newsfeed.newsfeeditem.ClipstrawEvent;
+import com.clipstraw.gx.clipstraw.model.session.ClipstrawSession;
+import com.clipstraw.gx.clipstraw.model.user.UserSkeleton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,13 +27,11 @@ import java.util.Random;
 /**
  * Created by tahir on 1/19/2016.
  */
-public class TimelineView extends LinearLayout{
+public class TimelineView extends LinearLayout implements Timeline.TimelineListener {
 
     Context mContext;
 
-    private int year;
-
-    private boolean isLoggedInUser;
+    private int year, month;
 
     private int yOffset, xOffset;
 
@@ -38,16 +43,31 @@ public class TimelineView extends LinearLayout{
 
     private boolean pagesAdded;
 
-    TimelineListener timelineListener;
+    private Timeline timeline;
 
-    public TimelineView(Context context, boolean isLoggedInUser) {
+    TimelineViewListener timelineViewListener;
+
+    public TimelineView(Context context) {
         super(context);
-        this.isLoggedInUser = isLoggedInUser;
+        Date date = Calendar.getInstance().getTime();
+        this.year = date.getYear();
+        this.month = date.getMonth();
+//        System.out.println("year is : " + year);
+//        System.out.println("month is : " + month);
         init(context);
     }
 
-    public void setTimelineListener(TimelineListener timelineListener) {
-        this.timelineListener = timelineListener;
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
+        timeline.setListener(this);
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    public void setTimelineViewListener(TimelineViewListener timelineViewListener) {
+        this.timelineViewListener = timelineViewListener;
     }
 
     private void init(Context context){
@@ -65,7 +85,7 @@ public class TimelineView extends LinearLayout{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        System.out.println("inside on measure of timeline view");
+       //6 System.out.println("inside on measure of timeline view");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -78,24 +98,26 @@ public class TimelineView extends LinearLayout{
             int previousWidth = 0;
             int previousMarginLeft = 0;
             for(TimelinePage timelinePage : timelinePages){
-                System.out.println("width of the page : " + timelinePage.getTimelinePageView().getMeasuredWidth());
-                int realWidth = timelinePage.getTimelinePageView().getProgressBoxWidth();
+                System.out.println("width of the page : " + timelinePage.getPipedView().getMeasuredWidth());
+                int realWidth = timelinePage.getProgressBoxWidth();
                 System.out.println("real width of the page : " + realWidth);
                 //timelinePage.getPipedView().getLayoutParams().width = realWidth;
                 //timelinePage.getPipedView().requestLayout();
                 if (timelinePage.getDirection() == previousDirection){
                     if(previousDirection == TimelinePage.DIRECTION_LEFT){
-                        previousMarginLeft = (previousMarginLeft - previousWidth) + timelinePage.getTimelinePageView().getPipeWidth();
+                        previousMarginLeft = (previousMarginLeft - previousWidth) + timelinePage.getPipeWidth();
                     }
                     else if(previousDirection == TimelinePage.DIRECTION_RIGHT){
-                        previousMarginLeft = previousMarginLeft + previousWidth - timelinePage.getTimelinePageView().getPipeWidth();
+                        previousMarginLeft = previousMarginLeft + previousWidth - timelinePage.getPipeWidth();
                     }
                 }
                 //System.out.println("new width : " + timelinePage.getPipedView().getWidth());
                 //System.out.println("setting margin left : " + previousMarginLeft);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(realWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParams.leftMargin = previousMarginLeft;
-                timelinePage.getTimelinePageView().setLayoutParams(layoutParams);
+                timelinePage.getPipedView().setLayoutParams(layoutParams);
+                ((LayoutParams)timelinePage.getPipedView().getLayoutParams()).leftMargin = previousMarginLeft;
+                System.out.println("new width : " + timelinePage.getPipedView().getMeasuredWidth());
                 //timelinePage.getTimelinePageView().getLayoutParams().width = realWidth;
                 //((LayoutParams)timelinePage.getTimelinePageView().getLayoutParams()).leftMargin = previousMarginLeft;
                 //System.out.println("new left margin : " + ((LayoutParams) timelinePage.getPipedView().getLayoutParams()).leftMargin);
@@ -110,7 +132,23 @@ public class TimelineView extends LinearLayout{
 
     public void setYear(int year) {
         this.year = year;
-        new EventPageLoader().execute("");
+        fetchTimeline();
+    }
+
+    public void setMonth(int month){
+        this.month = month;
+        fetchTimeline();
+    }
+
+    public void show(){
+        if(timeline != null){
+            fetchTimeline();
+        }
+    }
+
+    private void fetchTimeline(){
+        timeline.fetchTimeline();
+        timelineViewListener.onTimelineFetchStarted();
     }
 
     private void setTotalLevelsAccordingToScreenSize(){
@@ -165,38 +203,106 @@ public class TimelineView extends LinearLayout{
         return direction;
     }
 
+    @Override
+    public void onTimelineFetched() {
+        Toast.makeText(getContext(),"timeline fetched. Now constructing.",Toast.LENGTH_SHORT).show();
+        new EventPageLoader().execute("");
+    }
+
+    @Override
+    public void onError(ClipstrawError error) {
+        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        timelineViewListener.onTimelineFetchFinished();
+    }
+
+    private int getLimit(){
+
+        System.out.println("month is : " + month);
+
+        if (isLoggedInUser()){
+            switch (month){
+                case 1:case 3:case 5:case 7:case 8:case 10:case 12:        return 31;
+
+                case 4:case 6:case 9:case 11:                              return 30;
+
+                case 2:                                                    return isLeapYear() ? 29 : 28;
+
+                default:                                                   return isLeapYear() ? 366 : 365;
+            }
+        }
+        else {
+            return timeline.getEvents().size();
+        }
+    }
+
+    private boolean isLoggedInUser(){
+//        ClipstrawSession session = SessionManager.getInstance().getActiveSession();
+//        if(timeline.getUser().equals(new UserSkeleton(session.getUserId(),session.getUserName(),"abc"))) return true;
+        return true;
+    }
+
     class EventPageLoader extends AsyncTask<String,View,String>{
 
         private void renderTimeline(){
             Calendar calendar = Calendar.getInstance();
-            calendar.set(year,1,1);
+            if (isLoggedInUser()){
+                calendar.set(year,month == 0 ? 1 : month,1);
+            }
+            else{
+                System.out.println("event list size : " + timeline.getEvents().size());
+                calendar.set(timeline.getEvents().get(0).getDate().getYear(),timeline.getEvents().get(0).getDate().getMonth(),timeline.getEvents().get(0).getDate().getDay());
+            }
             Date date;
-            int limit = isLeapYear() ? 366 : 365;
-            for(int i = 1 ; i <= 30; i++){
+            int eventIndex = 0;
+            int limit = getLimit();
+            System.out.println("limit is : " + limit);
+            for(int i = 0 ; i < limit; i++){
                 date = calendar.getTime();
                 byte direction = getDirection();
-                final TimelinePage timelinePage = new TimelinePage(mContext, direction,date,"Event #" + i,isLoggedInUser&&i%2!=0?false:true,true);
+                ClipstrawEvent event = null;
 
-                TimelinePageView pipedView = timelinePage.getTimelinePageView();
-                //System.out.println("pipedView width : " + pipedView.getProgressBoxWidth());
-                pipedView.getEventBox().setOnClickListener(new OnClickListener() {
+                System.out.println("date : " + date.toString());
+
+                if (!isLoggedInUser() || isLoggedInUser() && CommonUtilities.matchDate(date, timeline.getEvents().get(eventIndex).getDate())){
+                    System.out.println("dates equal");
+                    event = timeline.getEvents().get(eventIndex);
+                    eventIndex++;
+                }
+                else{
+                    event = new ClipstrawEvent(date);
+                }
+
+                final TimelinePage timelinePage = new TimelinePage(getContext(),direction,event);
+
+                timelinePage.getEventBox().setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        timelineListener.onTimelinePageSelected(timelinePage);
+                        timelineViewListener.onTimelinePageSelected(timelinePage);
                     }
                 });
-                publishProgress(pipedView);
-                //System.out.println("getLeft : " + pipedView.getLeft());
+                publishProgress(timelinePage.getPipedView());
+
                 if (direction == TimelinePage.DIRECTION_RIGHT){
-                    xOffset = xOffset + pipedView.getMeasuredWidth();
+                    xOffset = xOffset + timelinePage.getPipedView().getMeasuredWidth();
                     level++;
                 }
                 else if (direction == TimelinePage.DIRECTION_LEFT){
-                    xOffset = xOffset - pipedView.getMeasuredWidth();
+                    xOffset = xOffset - timelinePage.getPipedView().getMeasuredWidth();
                     level--;
                 }
-                calendar.add(GregorianCalendar.DATE,1);
+
                 timelinePages.add(timelinePage);
+
+                if( i < (limit - 1)){
+                    if (isLoggedInUser()){
+                        calendar.add(GregorianCalendar.DATE, 1);
+                    }
+                    else
+                    {
+                        calendar.set(timeline.getEvents().get(i+1).getDate().getYear(),timeline.getEvents().get(i+1).getDate().getMonth(),timeline.getEvents().get(i+1).getDate().getDay());
+                    }
+                }
+
             }
         }
 
@@ -207,9 +313,6 @@ public class TimelineView extends LinearLayout{
             if(((ViewGroup)TimelineView.this).getChildCount() > 0) {
                 TimelineView.this.removeAllViews();
                 timelinePages.clear();
-            }
-            if(timelineListener != null){
-                timelineListener.onTimelineFetchStarted();
             }
         }
 
@@ -230,8 +333,8 @@ public class TimelineView extends LinearLayout{
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if(timelineListener != null){
-                timelineListener.onTimelineFetchFinished();
+            if(timelineViewListener != null){
+                timelineViewListener.onTimelineFetchFinished();
             }
             //removeView(progressBar);
             addTimelinePages();
@@ -244,15 +347,14 @@ public class TimelineView extends LinearLayout{
         private void addTimelinePages(){
             if(timelinePages != null && !timelinePages.isEmpty()){
                 for(TimelinePage timelinePage : timelinePages){
-
-                    addView(timelinePage.getTimelinePageView());
+                    addView(timelinePage.getPipedView());
                 }
 
             }
         }
     }
 
-    public interface TimelineListener{
+    public interface TimelineViewListener {
 
         public void onTimelineFetchStarted();
 

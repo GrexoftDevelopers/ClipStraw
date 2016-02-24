@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.clipstraw.gx.clipstraw.R;
 import com.clipstraw.gx.clipstraw.helper.CommonUtilities;
-import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
 
 /**
  * Created by tahir on 2/9/2016.

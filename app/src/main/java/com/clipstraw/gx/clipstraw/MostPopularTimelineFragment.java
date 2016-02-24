@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.clipstraw.gx.clipstraw.timeline.TimelinePage;
+import widgets.TimelinePage;
 
 import widgets.TimelineView;
 
@@ -26,12 +26,12 @@ public class MostPopularTimelineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.layout_most_popular_timeline,container,false);
-        timelineView = new TimelineView(getActivity(),false);
+        timelineView = new TimelineView(getActivity());
         RelativeLayout timelineScroller = (RelativeLayout)fragmentView.findViewById(R.id.timeline_container);
 
         final ProgressBar progressBar = (ProgressBar)timelineScroller.findViewById(R.id.timeline_progress);
 
-        timelineView.setTimelineListener(new TimelineView.TimelineListener() {
+        timelineView.setTimelineViewListener(new TimelineView.TimelineViewListener() {
             @Override
             public void onTimelineFetchStarted() {
                 progressBar.setVisibility(View.VISIBLE);

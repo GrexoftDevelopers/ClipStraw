@@ -17,6 +17,8 @@ public class EventRequest extends Request {
 
     public static final String GET_BY_ID = "get_by_id";
 
+    public static final String DELETE = "delete";
+
     public EventRequest(String apiEndPoint, RequestCallback callback) {
         super(API_NAME, apiEndPoint);
         this.callback = callback;
@@ -84,6 +86,14 @@ public class EventRequest extends Request {
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
+            case DELETE:
+                try {
+                    jsonResponse.put("id",parameters.getString("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
 
 
         }
