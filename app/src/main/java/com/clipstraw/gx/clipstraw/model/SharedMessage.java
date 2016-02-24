@@ -196,6 +196,9 @@ public class SharedMessage {
                 }
             }
         });
+        Bundle params = new Bundle();
+        params.putString("event_id",event.getEventId());
+        getAllSharedMessagesRequest.setParameters(params);
         getAllSharedMessagesRequest.execute();
     }
 
