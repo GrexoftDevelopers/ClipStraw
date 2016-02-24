@@ -118,6 +118,7 @@ public class TimelineView extends LinearLayout implements Timeline.TimelineListe
                 timelinePage.getPipedView().setLayoutParams(layoutParams);
                 ((LayoutParams)timelinePage.getPipedView().getLayoutParams()).leftMargin = previousMarginLeft;
                 System.out.println("new width : " + timelinePage.getPipedView().getMeasuredWidth());
+                timelinePage.getPipedView().requestLayout();
                 //timelinePage.getTimelinePageView().getLayoutParams().width = realWidth;
                 //((LayoutParams)timelinePage.getTimelinePageView().getLayoutParams()).leftMargin = previousMarginLeft;
                 //System.out.println("new left margin : " + ((LayoutParams) timelinePage.getPipedView().getLayoutParams()).leftMargin);
@@ -221,11 +222,11 @@ public class TimelineView extends LinearLayout implements Timeline.TimelineListe
 
         if (isLoggedInUser()){
             switch (month){
-                case 1:case 3:case 5:case 7:case 8:case 10:case 12:        return 31;
+                case 0:case 2:case 4:case 6:case 7:case 9:case 11:         return 31;
 
-                case 4:case 6:case 9:case 11:                              return 30;
+                case 3:case 5:case 8:case 10:                              return 30;
 
-                case 2:                                                    return isLeapYear() ? 29 : 28;
+                case 1:                                                    return isLeapYear() ? 29 : 28;
 
                 default:                                                   return isLeapYear() ? 366 : 365;
             }
