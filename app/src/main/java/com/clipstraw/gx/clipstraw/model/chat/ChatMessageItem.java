@@ -3,7 +3,7 @@ package com.clipstraw.gx.clipstraw.model.chat;
 import android.os.Bundle;
 
 import com.clipstraw.gx.clipstraw.model.ClipstrawError;
-import com.clipstraw.gx.clipstraw.model.user.User;
+import com.clipstraw.gx.clipstraw.model.user.UserSkeleton;
 import com.clipstraw.gx.clipstraw.request.ChatRequest;
 import com.clipstraw.gx.clipstraw.request.Request;
 
@@ -17,7 +17,7 @@ public class ChatMessageItem {
 
     private String id;
 
-    private User partnerUser;
+    private UserSkeleton sender;
     private boolean isIncoming;
     private String time;
     private boolean isSeen;
@@ -25,20 +25,20 @@ public class ChatMessageItem {
     private boolean isSent;
     private String content;
     private int dataSize;
-    private boolean isBinary;
     private String conversationId;
     private ChatItemListener chatItemListener;
 
 
-    public ChatMessageItem(String conversationId, boolean isIncoming, String time, String content) {
-        this.content = conversationId;
+    public ChatMessageItem(String conversationId, boolean isIncoming, String time, String content, UserSkeleton sender) {
         this.isIncoming = isIncoming;
         this.time = time;
         this.content = content;
+        this.sender = sender;
+        this.conversationId = conversationId;
     }
 
-    public User getPartnerUser() {
-        return partnerUser;
+    public UserSkeleton getSender() {
+        return sender;
     }
 
     public String getConversationId() {
@@ -97,7 +97,7 @@ public class ChatMessageItem {
         this.dataSize = dataSize;
     }
 
-    private void receive() {
+    public void receive() {
 
         Request receiveRequest = new ChatRequest(ChatRequest.RECEIVE_CHAT, new Request.RequestCallback() {
             @Override
@@ -106,9 +106,9 @@ public class ChatMessageItem {
                 try {
                     if (!response.has("error")) {
 
-                        String receivedId = response.getString("id");
+                        id = response.getString("id");
                         if (chatItemListener != null) {
-                            chatItemListener.onReceive(receivedId);
+                            chatItemListener.onReceive(ChatMessageItem.this);
 
                         }
                     } else {
@@ -130,12 +130,39 @@ public class ChatMessageItem {
 
     }
 
-    private void delete() {
+    public void deleteChatItem() {
+        Request deleteChatItemRequest = new ChatRequest(ChatRequest.DELETE_CHAT_MESSAGE_ITEM, new Request.RequestCallback() {
+            @Override
+            public void onCompleted(JSONObject response) {
+
+                try {
+                    if (!response.has("error")) {
+
+                        id = response.getString("id");
+                        if (chatItemListener != null) {
+                            chatItemListener.onDeleteChatItem(ChatMessageItem.this);
+
+                        }
+                    } else {
+                        if (chatItemListener != null) {
+                            chatItemListener.onError(ClipstrawError.createError(response.getJSONObject("error")));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        Bundle params = new Bundle();
+        params.putString("id", this.id);
+        deleteChatItemRequest.setParameters(params);
+        deleteChatItemRequest.execute();
 
 
     }
 
-    private void send() {
+    public void send() {
         Request sendRequest = new ChatRequest(ChatRequest.SEND_CHAT, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
@@ -176,9 +203,11 @@ public class ChatMessageItem {
     public interface ChatItemListener {
         public void onSendChat(ChatMessageItem chatMessageItem);
 
-        public void onReceive(String receivedId);
+        public void onReceive(ChatMessageItem receivedId);
 
         public void onError(ClipstrawError error);
+
+        public void onDeleteChatItem(ChatMessageItem item);
     }
 
 }

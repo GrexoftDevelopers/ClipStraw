@@ -15,11 +15,11 @@ public class ChatRequest extends Request {
     public static final String DELETE = "delete";
     public static final String FETCH_ALL_GROUPS = "fetch_all_groups";
     public static final String LEAVE_GROUP = "leave_group";
-    public static final String FETCH_ALL_MSG="fetch_all_msg";
-    public static final String DELETE_CHAT_MESSAGE = "delete_chat_message";
+    public static final String FETCH_ALL_MSG = "fetch_all_msg";
+    public static final String DELETE_CHAT_MESSAGE_ITEM = "delete_chat_message_item";
     public static final String SEND_CHAT = "send_chat";
     public static final String RECEIVE_CHAT = "receive_chat";
-    public static final String CLEAR ="clear";
+    public static final String CLEAR = "clear";
 
 
     public ChatRequest(String apiEndPoint, RequestCallback callback) {
@@ -75,11 +75,28 @@ public class ChatRequest extends Request {
                     e.printStackTrace();
                 }
             case FETCH_ALL_MSG:
-                try{
-                    jsonResponse.put("id",parameters.getString("id"));
+                try {
+                    JSONArray chatMsgs = new JSONArray();
+                    JSONObject chatMsg;
+                    for (int i = 0; i < 15; i++) {
+                        chatMsg = new JSONObject();
+                        chatMsg.put("id", "" + i);
+                        chatMsg.put("content", "this is a content");
+                        chatMsg.put("time", "12:00");
+                        JSONObject user = new JSONObject();
+                        user.put("user_id","user123"+i);
+                        user.put("user_name","john "+i);
+                        user.put("profile_img_url","https//:something");
+                        chatMsg.put("sender", user);
+                        chatMsgs.put(chatMsg);
+
+                    }
+
+                    jsonResponse.put("chat_Msgs", chatMsgs);
+
                     callback.onCompleted(jsonResponse);
 
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             case LEAVE_GROUP:

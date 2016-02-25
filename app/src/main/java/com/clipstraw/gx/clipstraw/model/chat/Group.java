@@ -21,22 +21,33 @@ public class Group extends Conversation {
     private String groupName;
     private String displayImageUrl;
     private static GroupListener groupListener;
+    private ArrayList<UserSkeleton> groupMembers;
 
-    public Group(ArrayList<UserSkeleton> partners, ArrayList<ChatMessageItem> chatMessageList) {
+//    public Group(String conversationId, String groupName, String displayImageUrl, ArrayList<UserSkeleton> groupMembers) {
+//        super(conversationId);
+//        this.groupName = groupName;
+//        this.displayImageUrl = displayImageUrl;
+//        this.groupMembers = groupMembers;
+//    }
 
-        super(partners, chatMessageList);
+    public Group(String conversationId, String groupName, String displayImageUrl) {
+        super(conversationId);
+        this.groupName = groupName;
+        this.displayImageUrl = displayImageUrl;
+
     }
 
-    public Group(String id, String groupName ,String displayImageUrl){
-        super(id);
-        this.groupName =groupName;
-        this.displayImageUrl =displayImageUrl;
+    public ArrayList<UserSkeleton> getGroupMembers() {
+        return groupMembers;
     }
 
-    public void setGroupListener(GroupListener groupListener) {
-        this.groupListener = groupListener;
+    public void setGroupMembers(ArrayList<UserSkeleton> groupMembers) {
+        this.groupMembers = groupMembers;
     }
 
+    public static void setGroupListener(GroupListener groupListener) {
+        Group.groupListener = groupListener;
+    }
 
     public ArrayList<ChatMessageItem> getChatMessageList() {
         return chatMessageList;
@@ -60,9 +71,7 @@ public class Group extends Conversation {
     }
 
 
-
-
-    private void addMember(final User user) {
+    public void addMember(final User user) {
 
         Request addMemberRequest = new ChatRequest(ChatRequest.ADD_MEMBER, new Request.RequestCallback() {
             @Override
@@ -71,7 +80,7 @@ public class Group extends Conversation {
                     if (!response.has("error")) {
 
                         String userId = response.getString("user_id");
-                        partners.add(user);
+                        groupMembers.add(user);
                         if (groupListener != null) {
                             groupListener.onAddMember(user);
                         }
@@ -90,13 +99,13 @@ public class Group extends Conversation {
         });
         Bundle parameters = new Bundle();
         parameters.putString("user_id", user.getUserId());
-        parameters.putString("group_id", this.getId());
+        parameters.putString("group_id", this.getConversationId());
         addMemberRequest.setParameters(parameters);
         addMemberRequest.execute();
 
     }
 
-    private void removeMember(final User user) {
+    public void removeMember(final User user) {
         Request removeMemberRequest = new ChatRequest(ChatRequest.REMOVE_MEMBER, new Request.RequestCallback() {
             @Override
             public void onCompleted(JSONObject response) {
@@ -104,7 +113,7 @@ public class Group extends Conversation {
                     if (!response.has("error")) {
 
                         String userId = response.getString("user_id");
-                        partners.remove(user);
+                        groupMembers.remove(user);
                         if (groupListener != null) {
                             groupListener.onRemoveMember(user);
                         }
@@ -123,7 +132,7 @@ public class Group extends Conversation {
         });
         Bundle parameters = new Bundle();
         parameters.putString("user_id", user.getUserId());
-        parameters.putString("group_id", this.getId());
+        parameters.putString("group_id", this.getConversationId());
         removeMemberRequest.setParameters(parameters);
         removeMemberRequest.execute();
     }
@@ -145,6 +154,7 @@ public class Group extends Conversation {
                                 String groupName = group.getString("group_name");
                                 String groupId = group.getString("group_id");
                                 String groupImageUrl = group.getString("group_image_url");
+
 
                                 Group clipStrawGroup = new Group(groupId, groupName, groupImageUrl);
                                 groupArrayList.add(clipStrawGroup);
@@ -180,7 +190,7 @@ public class Group extends Conversation {
                 try {
                     if (!response.has("error")) {
                         String userId = response.getString("user_id");
-                        partners.remove(user);
+                        groupMembers.remove(user);
                         if (groupListener != null) {
                             groupListener.onLeaveGroup(user);
                         }
@@ -206,6 +216,7 @@ public class Group extends Conversation {
     }
 
     public interface GroupListener extends ConversationListener {
+
         public void onAddMember(User user);
 
         public void onRemoveMember(User user);
