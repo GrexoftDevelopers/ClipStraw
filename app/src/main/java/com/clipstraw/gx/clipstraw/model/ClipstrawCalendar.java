@@ -1,6 +1,5 @@
-package com.clipstraw.gx.clipstraw;
+package com.clipstraw.gx.clipstraw.model;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,6 +13,11 @@ public class ClipstrawCalendar extends GregorianCalendar {
         if(this.get(DAY_OF_MONTH) != date.get(DAY_OF_MONTH)) return false;
         return true;
     }
+
+//    public ClipstrawCalendar(long millis){
+//        super(false);
+//        setTimeInMillis(millis);
+//    }
 
    // public void timeAgo
 
