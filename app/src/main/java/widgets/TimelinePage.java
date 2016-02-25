@@ -51,7 +51,7 @@ public class TimelinePage{
         }
         eventBox = (EventBox)pipedView.findViewById(R.id.event_box);
 
-        if (event != null){
+        if (event.getTitle() != null){
             ((ViewGroup)pipedView.findViewById(R.id.progress_item1)).getChildAt(1).setVisibility(View.GONE);
             ((ViewGroup)pipedView.findViewById(R.id.progress_item2)).getChildAt(1).setVisibility(View.GONE);
             ((ViewGroup)pipedView.findViewById(R.id.progress_item1_2)).getChildAt(1).setVisibility(View.GONE);
